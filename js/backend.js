@@ -2,6 +2,9 @@
   'use strict';
   var config = window.SMAKHUB_CONFIG || {};
   var page = location.pathname.split('/').pop();
+  var htmlSuffix = page.endsWith('.html') ? '.html' : '';
+  var pageName = page.replace(/\.html$/, '');
+  var accountURL = new URL('account' + htmlSuffix, location.href);
   var form = document.querySelector('form[method="post"]');
   var account = document.getElementById('account-status');
   if (!form && !account) return;
@@ -36,7 +39,7 @@
   if (form) {
     form.addEventListener('submit', async function (event) {
       event.preventDefault();
-      if (page === 'contacts.html') {
+      if (pageName === 'contacts') {
         status.textContent = 'Онлайн-надсилання ще не підключено. Напишіть нам за адресою, зазначеною в контактах. Дані форми не надіслано.';
         return;
       }
@@ -46,18 +49,18 @@
       try {
         var api = await client();
         var data = new FormData(form);
-        if (page === 'register.html') {
+        if (pageName === 'register') {
           var result = await api.auth.signUp({ email: String(data.get('email')).trim(), password: String(data.get('password')), options: {
-            emailRedirectTo: new URL('account.html', location.href).href,
+            emailRedirectTo: accountURL.href,
             data: { display_name: String(data.get('name')).trim(), skill: String(data.get('skill')) }
           }});
           if (result.error) throw result.error;
           form.reset();
           status.textContent = result.data.session ? 'Реєстрацію завершено. Відкрийте «Мій акаунт».' : 'Якщо реєстрація доступна для цієї адреси, на неї надійде лист. Перевірте пошту для підтвердження.';
-        } else if (page === 'login.html') {
+        } else if (pageName === 'login') {
           var login = await api.auth.signInWithPassword({ email: String(data.get('email')).trim(), password: String(data.get('password')) });
           if (login.error) throw login.error;
-          location.assign('account.html');
+          location.assign(accountURL.href);
         }
       } catch (error) { status.textContent = friendly(error); }
       finally { button.disabled = false; }
