@@ -1,0 +1,339 @@
+{
+  "browser": "Firefox",
+  "version": "144.0.2",
+  "results": [
+    {
+      "file": "404.html",
+      "width": 390,
+      "height": 844,
+      "overflow": 0,
+      "heading": true,
+      "landmarks": true,
+      "imports": true,
+      "grid": null
+    },
+    {
+      "file": "about.html",
+      "width": 390,
+      "height": 844,
+      "overflow": 0,
+      "heading": true,
+      "landmarks": true,
+      "imports": true,
+      "grid": null
+    },
+    {
+      "file": "account.html",
+      "width": 390,
+      "height": 844,
+      "overflow": 0,
+      "heading": true,
+      "landmarks": true,
+      "imports": true,
+      "grid": null
+    },
+    {
+      "file": "admin.html",
+      "width": 390,
+      "height": 844,
+      "overflow": 0,
+      "heading": true,
+      "landmarks": true,
+      "imports": true,
+      "grid": null
+    },
+    {
+      "file": "author.html",
+      "width": 390,
+      "height": 844,
+      "overflow": 0,
+      "heading": true,
+      "landmarks": true,
+      "imports": true,
+      "grid": null
+    },
+    {
+      "file": "catalog.html",
+      "width": 390,
+      "height": 844,
+      "overflow": 0,
+      "heading": true,
+      "landmarks": true,
+      "imports": true,
+      "grid": "grid"
+    },
+    {
+      "file": "contacts.html",
+      "width": 390,
+      "height": 844,
+      "overflow": 0,
+      "heading": true,
+      "landmarks": true,
+      "imports": true,
+      "grid": null
+    },
+    {
+      "file": "index.html",
+      "width": 390,
+      "height": 844,
+      "overflow": 0,
+      "heading": true,
+      "landmarks": true,
+      "imports": true,
+      "grid": "grid",
+      "mobileMenu": true
+    },
+    {
+      "file": "kitchen.html",
+      "width": 390,
+      "height": 844,
+      "overflow": 0,
+      "heading": true,
+      "landmarks": true,
+      "imports": true,
+      "grid": null
+    },
+    {
+      "file": "recipe.html",
+      "width": 390,
+      "height": 844,
+      "overflow": 0,
+      "heading": true,
+      "landmarks": true,
+      "imports": true,
+      "grid": null
+    },
+    {
+      "file": "saved.html",
+      "width": 390,
+      "height": 844,
+      "overflow": 0,
+      "heading": true,
+      "landmarks": true,
+      "imports": true,
+      "grid": "grid"
+    },
+    {
+      "file": "404.html",
+      "width": 768,
+      "height": 1024,
+      "overflow": 0,
+      "heading": true,
+      "landmarks": true,
+      "imports": true,
+      "grid": null
+    },
+    {
+      "file": "about.html",
+      "width": 768,
+      "height": 1024,
+      "overflow": 0,
+      "heading": true,
+      "landmarks": true,
+      "imports": true,
+      "grid": null
+    },
+    {
+      "file": "account.html",
+      "width": 768,
+      "height": 1024,
+      "overflow": 0,
+      "heading": true,
+      "landmarks": true,
+      "imports": true,
+      "grid": null
+    },
+    {
+      "file": "admin.html",
+      "width": 768,
+      "height": 1024,
+      "overflow": 0,
+      "heading": true,
+      "landmarks": true,
+      "imports": true,
+      "grid": null
+    },
+    {
+      "file": "author.html",
+      "width": 768,
+      "height": 1024,
+      "overflow": 0,
+      "heading": true,
+      "landmarks": true,
+      "imports": true,
+      "grid": null
+    },
+    {
+      "file": "catalog.html",
+      "width": 768,
+      "height": 1024,
+      "overflow": 0,
+      "heading": true,
+      "landmarks": true,
+      "imports": true,
+      "grid": "grid"
+    },
+    {
+      "file": "contacts.html",
+      "width": 768,
+      "height": 1024,
+      "overflow": 0,
+      "heading": true,
+      "landmarks": true,
+      "imports": true,
+      "grid": null
+    },
+    {
+      "file": "index.html",
+      "width": 768,
+      "height": 1024,
+      "overflow": 0,
+      "heading": true,
+      "landmarks": true,
+      "imports": true,
+      "grid": "grid"
+    },
+    {
+      "file": "kitchen.html",
+      "width": 768,
+      "height": 1024,
+      "overflow": 0,
+      "heading": true,
+      "landmarks": true,
+      "imports": true,
+      "grid": null
+    },
+    {
+      "file": "recipe.html",
+      "width": 768,
+      "height": 1024,
+      "overflow": 0,
+      "heading": true,
+      "landmarks": true,
+      "imports": true,
+      "grid": null
+    },
+    {
+      "file": "saved.html",
+      "width": 768,
+      "height": 1024,
+      "overflow": 0,
+      "heading": true,
+      "landmarks": true,
+      "imports": true,
+      "grid": "grid"
+    },
+    {
+      "file": "404.html",
+      "width": 1440,
+      "height": 900,
+      "overflow": 0,
+      "heading": true,
+      "landmarks": true,
+      "imports": true,
+      "grid": null
+    },
+    {
+      "file": "about.html",
+      "width": 1440,
+      "height": 900,
+      "overflow": 0,
+      "heading": true,
+      "landmarks": true,
+      "imports": true,
+      "grid": null
+    },
+    {
+      "file": "account.html",
+      "width": 1440,
+      "height": 900,
+      "overflow": 0,
+      "heading": true,
+      "landmarks": true,
+      "imports": true,
+      "grid": null
+    },
+    {
+      "file": "admin.html",
+      "width": 1440,
+      "height": 900,
+      "overflow": 0,
+      "heading": true,
+      "landmarks": true,
+      "imports": true,
+      "grid": null
+    },
+    {
+      "file": "author.html",
+      "width": 1440,
+      "height": 900,
+      "overflow": 0,
+      "heading": true,
+      "landmarks": true,
+      "imports": true,
+      "grid": null
+    },
+    {
+      "file": "catalog.html",
+      "width": 1440,
+      "height": 900,
+      "overflow": 0,
+      "heading": true,
+      "landmarks": true,
+      "imports": true,
+      "grid": "grid"
+    },
+    {
+      "file": "contacts.html",
+      "width": 1440,
+      "height": 900,
+      "overflow": 0,
+      "heading": true,
+      "landmarks": true,
+      "imports": true,
+      "grid": null
+    },
+    {
+      "file": "index.html",
+      "width": 1440,
+      "height": 900,
+      "overflow": 0,
+      "heading": true,
+      "landmarks": true,
+      "imports": true,
+      "grid": "grid"
+    },
+    {
+      "file": "kitchen.html",
+      "width": 1440,
+      "height": 900,
+      "overflow": 0,
+      "heading": true,
+      "landmarks": true,
+      "imports": true,
+      "grid": null
+    },
+    {
+      "file": "recipe.html",
+      "width": 1440,
+      "height": 900,
+      "overflow": 0,
+      "heading": true,
+      "landmarks": true,
+      "imports": true,
+      "grid": null
+    },
+    {
+      "file": "saved.html",
+      "width": 1440,
+      "height": 900,
+      "overflow": 0,
+      "heading": true,
+      "landmarks": true,
+      "imports": true,
+      "grid": "grid"
+    }
+  ],
+  "errors": [],
+  "time": "2026-11-19T22:57:06.208Z"
+}

@@ -4,3 +4,6 @@ node_modules/
 .env.*
 *.zip
 checks/screenshots/
+
+dist/
+server/public-config.mjs

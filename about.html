@@ -24,13 +24,10 @@
       <nav id="site-nav" class="site-nav" aria-label="Головна навігація">
         <ul>
           <li><a href="index.html">Головна</a></li>
-          <li><a href="catalog.html">Каталог</a></li>
-          <li><a href="recipe.html">Рецепт</a></li>
-          <li><a href="about.html" aria-current="page">Про нас</a></li>
+          <li><a href="catalog.html">Рецепти</a></li>
           <li><a href="contacts.html">Контакти</a></li>
-          <li><a href="account.html">Мій акаунт</a></li>
-          <li><a href="login.html">Вхід</a></li>
-          <li><a href="register.html">Реєстрація</a></li>
+          <li><a href="saved.html">Збережене</a></li>
+          <li><a href="account.html" data-account-link>Увійти</a></li>
         </ul>
       </nav>
     </div>
@@ -104,23 +101,15 @@
   <footer class="site-footer">
     <div class="container footer-inner">
       <p>&copy; 2026 SmakHub. Навчальний проєкт, КПІ ім. Ігоря Сікорського.</p>
-      <nav aria-label="Навігація у футері">
-        <ul>
-          <li><a href="index.html">Головна</a></li>
-          <li><a href="catalog.html">Каталог</a></li>
-          <li><a href="recipe.html">Рецепт</a></li>
-          <li><a href="account.html">Мій акаунт</a></li>
-          <li><a href="login.html">Вхід</a></li>
-          <li><a href="register.html">Реєстрація</a></li>
-          <li><a href="about.html">Про нас</a></li>
-          <li><a href="contacts.html">Контакти</a></li>
-        </ul>
-      </nav>
+      <nav aria-label="Додаткові посилання"><ul><li><a href="about.html">Про проєкт</a></li><li><a href="kitchen.html">Кухонні інструменти</a></li></ul></nav>
     </div>
   </footer>
 
   <script src="js/main.js" defer></script>
   <script src="js/config.js" defer></script>
+  <script src="js/vendor/supabase.js" defer></script>
+  <script src="js/client.js" defer></script>
   <script src="js/backend.js" defer></script>
+  <script src="js/lang.js" defer></script>
 </body>
 </html>

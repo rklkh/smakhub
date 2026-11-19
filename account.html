@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Мій акаунт — SmakHub</title>
-  <meta name="description" content="Короткий опис сторінки (до 160 символів).">
+  <meta name="description" content="Увійдіть до SmakHub або створіть акаунт, щоб зберігати рецепти.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,wght@0,400;0,700;1,700&amp;family=Playfair+Display:wght@600;700&amp;display=swap" rel="stylesheet">
@@ -23,42 +23,96 @@
       <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Відкрити меню">&#9776;</button>
       <nav id="site-nav" class="site-nav" aria-label="Головна навігація">
         <ul>
-          <!-- Додайте aria-current="page" до посилання ПОТОЧНОЇ сторінки -->
           <li><a href="index.html">Головна</a></li>
-          <li><a href="catalog.html">Каталог</a></li>
-          <li><a href="recipe.html">Рецепт</a></li>
-          <li><a href="about.html">Про нас</a></li>
+          <li><a href="catalog.html">Рецепти</a></li>
           <li><a href="contacts.html">Контакти</a></li>
-          <li><a href="account.html">Мій акаунт</a></li>
-          <li><a href="login.html">Вхід</a></li>
-          <li><a href="register.html">Реєстрація</a></li>
+          <li><a href="saved.html">Збережене</a></li>
+          <li><a href="account.html" aria-current="page" data-account-link>Увійти</a></li>
         </ul>
       </nav>
     </div>
   </header>
 
-  <main id="main"><div class="container"><h1>Мій акаунт</h1><p id="account-status" role="status">Перевіряємо вхід…</p><p><a href="login.html">Увійти</a> · <a href="register.html">Зареєструватися</a></p><button class="btn" type="button" id="logout" hidden>Вийти з акаунта</button></div></main>
+  <main id="main">
+    <div class="container">
+
+      <h1>Акаунт</h1>
+      <p id="account-status" role="status">Перевіряємо вхід…</p>
+      <div id="account-guest" class="auth-panel" hidden>
+        <nav class="auth-switch" aria-label="Дії з акаунтом">
+          <a class="btn btn-outline" href="?mode=login" data-auth-mode="login">Увійти</a>
+          <a class="btn btn-outline" href="?mode=register" data-auth-mode="register">Створити акаунт</a>
+        </nav>
+        <form id="login-form" class="form" action="#" method="post">
+          <div class="form-group">
+            <label for="l-email">Електронна пошта</label>
+            <input type="email" id="l-email" name="email" required autocomplete="email">
+          </div>
+          <div class="form-group">
+            <label for="l-password">Пароль</label>
+            <input type="password" id="l-password" name="password" required autocomplete="current-password">
+          </div>
+          <button class="btn" type="submit">Увійти</button>
+        </form>
+        <form hidden id="register-form" class="form" action="#" method="post">
+          <div class="form-group">
+            <label for="r-name">Ім'я</label>
+            <input type="text" id="r-name" name="name" required maxlength="80" autocomplete="name">
+          </div>
+          <div class="form-group">
+            <label for="r-email">Електронна пошта</label>
+            <input type="email" id="r-email" name="email" required autocomplete="email">
+          </div>
+          <div class="form-group">
+            <label for="password">Пароль</label>
+            <input type="password" id="password" name="password" required minlength="8" autocomplete="new-password" aria-describedby="password-hint">
+            <p class="form-hint" id="password-hint">Щонайменше 8 символів.</p>
+          </div>
+          <div class="form-group">
+            <label for="password-confirm">Підтвердження пароля</label>
+            <input type="password" id="password-confirm" name="password_confirm" required minlength="8" autocomplete="new-password">
+          </div>
+          <div class="form-group">
+            <label for="r-skill">Рівень кулінарних навичок</label>
+            <select id="r-skill" name="skill">
+              <option value="beginner">Початківець</option>
+              <option value="intermediate">Дещо вмію</option>
+              <option value="advanced">Досвідчений</option>
+            </select>
+          </div>
+          <div class="form-group form-check">
+            <input type="checkbox" id="r-terms" name="terms" required>
+            <label for="r-terms">Погоджуюся з правилами платформи</label>
+          </div>
+          <button class="btn" type="submit">Створити акаунт</button>
+        </form>
+      </div>
+      <section id="account-member" class="auth-panel" hidden>
+        <h2 id="account-greeting">Мій профіль</h2>
+        <p id="account-email"></p>
+        <div class="auth-switch">
+          <a class="btn btn-outline" href="admin.html" id="admin-link" hidden>Модерація</a>
+          <a class="btn" href="author.html">Мої рецепти</a>
+          <a class="btn" href="saved.html">Збережені рецепти</a>
+          <button class="btn btn-outline" type="button" id="logout">Вийти</button>
+        </div>
+      </section>
+    </div>
+  </main>
 
   <footer class="site-footer">
     <div class="container footer-inner">
       <p>&copy; 2026 SmakHub. Навчальний проєкт, КПІ ім. Ігоря Сікорського.</p>
-      <nav aria-label="Навігація у футері">
-        <ul>
-          <li><a href="index.html">Головна</a></li>
-          <li><a href="catalog.html">Каталог</a></li>
-          <li><a href="recipe.html">Рецепт</a></li>
-          <li><a href="account.html">Мій акаунт</a></li>
-          <li><a href="login.html">Вхід</a></li>
-          <li><a href="register.html">Реєстрація</a></li>
-          <li><a href="about.html">Про нас</a></li>
-          <li><a href="contacts.html">Контакти</a></li>
-        </ul>
-      </nav>
+      <nav aria-label="Додаткові посилання"><ul><li><a href="about.html">Про проєкт</a></li><li><a href="kitchen.html">Кухонні інструменти</a></li></ul></nav>
     </div>
   </footer>
 
   <script src="js/main.js" defer></script>
   <script src="js/config.js" defer></script>
+  <script src="js/vendor/supabase.js" defer></script>
+  <script src="js/client.js" defer></script>
   <script src="js/backend.js" defer></script>
+  <script src="js/community.js" defer></script>
+  <script src="js/lang.js" defer></script>
 </body>
 </html>

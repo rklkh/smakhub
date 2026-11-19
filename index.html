@@ -24,13 +24,10 @@
       <nav id="site-nav" class="site-nav" aria-label="Головна навігація">
         <ul>
           <li><a href="index.html" aria-current="page">Головна</a></li>
-          <li><a href="catalog.html">Каталог</a></li>
-          <li><a href="recipe.html">Рецепт</a></li>
-          <li><a href="about.html">Про нас</a></li>
+          <li><a href="catalog.html">Рецепти</a></li>
           <li><a href="contacts.html">Контакти</a></li>
-          <li><a href="account.html">Мій акаунт</a></li>
-          <li><a href="login.html">Вхід</a></li>
-          <li><a href="register.html">Реєстрація</a></li>
+          <li><a href="saved.html">Збережене</a></li>
+          <li><a href="account.html" data-account-link>Увійти</a></li>
         </ul>
       </nav>
     </div>
@@ -73,6 +70,7 @@
         </ul>
       </section>
 
+      <section class="section" id="curated" hidden></section>
       <section class="section" aria-labelledby="featured-title">
         <h2 id="featured-title">Рецепти, які люблять готувати</h2>
         <ul class="card-grid">
@@ -80,8 +78,8 @@
             <article class="recipe-card">
               <img src="images/recipes/borshch.webp" alt="Тарілка червоного борщу зі сметаною та зеленню" width="640" height="480" loading="lazy">
               <div class="recipe-card-body">
-                <p class="recipe-card-cat">Обід <span class="badge">&#9733; 4,8<span class="visually-hidden"> з 5</span></span></p>
-                <h3><a href="recipe.html">Борщ класичний</a></h3>
+                <p class="recipe-card-cat">Обід</p>
+                <h3><a href="/recipes/borshch">Борщ класичний</a></h3>
                 <p>Насичений борщ на яловичому бульйоні з буряком, капустою та картоплею.</p>
                 <ul class="meta-list">
                   <li>Час: 2 год</li>
@@ -94,8 +92,8 @@
             <article class="recipe-card">
               <img src="images/recipes/syrnyky.webp" alt="Золотисті сирники зі сметаною на тарілці" width="640" height="480" loading="lazy">
               <div class="recipe-card-body">
-                <p class="recipe-card-cat">Сніданок <span class="badge">&#9733; 4,7<span class="visually-hidden"> з 5</span></span></p>
-                <h3><a href="recipe.html">Сирники з ізюмом</a></h3>
+                <p class="recipe-card-cat">Сніданок</p>
+                <h3><a href="/recipes/syrnyky">Сирники з родзинками</a></h3>
                 <p>Ніжні сирники з кисломолочного сиру — класика сніданку.</p>
                 <ul class="meta-list">
                   <li>Час: 30 хв</li>
@@ -108,8 +106,8 @@
             <article class="recipe-card">
               <img src="images/recipes/carbonara.webp" alt="Спагеті карбонара з беконом і пармезаном" width="640" height="480" loading="lazy">
               <div class="recipe-card-body">
-                <p class="recipe-card-cat">Вечеря <span class="badge">&#9733; 4,9<span class="visually-hidden"> з 5</span></span></p>
-                <h3><a href="recipe.html">Паста карбонара</a></h3>
+                <p class="recipe-card-cat">Вечеря</p>
+                <h3><a href="/recipes/carbonara">Паста карбонара</a></h3>
                 <p>Вершкова паста з беконом та яйцями без зайвих інгредієнтів.</p>
                 <ul class="meta-list">
                   <li>Час: 25 хв</li>
@@ -122,8 +120,8 @@
             <article class="recipe-card">
               <img src="images/recipes/mug-cake.webp" alt="Шоколадний кекс у керамічній кружці" width="640" height="480" loading="lazy">
               <div class="recipe-card-body">
-                <p class="recipe-card-cat">Десерт <span class="badge">&#9733; 4,4<span class="visually-hidden"> з 5</span></span></p>
-                <h3><a href="recipe.html">Шоколадний кекс у кружці</a></h3>
+                <p class="recipe-card-cat">Десерт</p>
+                <h3><a href="/recipes/mug-cake">Шоколадний кекс у кружці</a></h3>
                 <p>Десерт для мікрохвильовки: кружка, ложка та п'ять хвилин.</p>
                 <ul class="meta-list">
                   <li>Час: 5 хв</li>
@@ -139,9 +137,9 @@
       <section class="section" aria-labelledby="how-title">
         <h2 id="how-title">Як це працює</h2>
         <ol class="steps-simple">
-          <li><h3>Вкажіть, що є вдома</h3><p>Введіть два-три продукти, і SmakHub покаже страви, які з них можна приготувати.</p></li>
+          <li><h3>Вкажіть, що є вдома</h3><p>Введіть два-три продукти, і SmakHub покаже рецепти, у яких є всі вказані продукти.</p></li>
           <li><h3>Оберіть рецепт</h3><p>Відфільтруйте результати за часом приготування, складністю та категорією.</p></li>
-          <li><h3>Готуйте й зберігайте</h3><p>Дійте за покроковою інструкцією, а вдалі рецепти додавайте в «Улюблене».</p></li>
+          <li><h3>Готуйте й зберігайте</h3><p>Дійте за покроковою інструкцією, а вдалі рецепти додавайте в «Збережене».</p></li>
         </ol>
         <p>Ще не маєте акаунта? <a href="register.html">Зареєструйтеся</a> або <a href="login.html">увійдіть</a>.</p>
       </section>
@@ -151,23 +149,17 @@
   <footer class="site-footer">
     <div class="container footer-inner">
       <p>&copy; 2026 SmakHub. Навчальний проєкт, КПІ ім. Ігоря Сікорського.</p>
-      <nav aria-label="Навігація у футері">
-        <ul>
-          <li><a href="index.html">Головна</a></li>
-          <li><a href="catalog.html">Каталог</a></li>
-          <li><a href="recipe.html">Рецепт</a></li>
-          <li><a href="account.html">Мій акаунт</a></li>
-          <li><a href="login.html">Вхід</a></li>
-          <li><a href="register.html">Реєстрація</a></li>
-          <li><a href="about.html">Про нас</a></li>
-          <li><a href="contacts.html">Контакти</a></li>
-        </ul>
-      </nav>
+      <nav aria-label="Додаткові посилання"><ul><li><a href="about.html">Про проєкт</a></li><li><a href="kitchen.html">Кухонні інструменти</a></li></ul></nav>
     </div>
   </footer>
 
   <script src="js/main.js" defer></script>
   <script src="js/config.js" defer></script>
+  <script src="js/vendor/supabase.js" defer></script>
+  <script src="js/client.js" defer></script>
   <script src="js/backend.js" defer></script>
+  <script src="js/collections.js" defer></script>
+  <script src="js/community.js" defer></script>
+  <script src="js/lang.js" defer></script>
 </body>
 </html>

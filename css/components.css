@@ -1,0 +1,437 @@
+/* ---------- Кнопки ---------- */
+.btn {
+  display: inline-block;
+  padding: 0.7rem 1.4rem;
+  border: 2px solid transparent;
+  border-radius: var(--radius);
+  background: var(--color-primary-dark);
+  color: var(--color-white);
+  font-family: var(--font-body);
+  font-size: 1.125rem;
+  font-weight: 700;
+  line-height: 1.3;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.btn:hover {
+  filter: brightness(0.9);
+}
+
+.btn-secondary {
+  background: var(--color-secondary);
+  color: var(--color-text);
+}
+
+.btn-outline {
+  background: transparent;
+  border-color: var(--color-text);
+  color: var(--color-text);
+}
+
+.btn-outline:hover {
+  background: var(--color-white);
+  filter: none;
+}
+
+/* ---------- Hero (головна) ---------- */
+.hero {
+  background: var(--color-white);
+  border-bottom: 1px solid var(--color-border);
+  padding: 2.5rem 0;
+  margin: -2rem 0 2.5rem;
+}
+
+.hero-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  align-items: center;
+}
+
+.hero-figure {
+  margin: 0;
+}
+
+.hero-figure img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.search-form {
+  box-shadow: none;
+  border: 1px solid var(--color-border);
+  background: var(--color-bg);
+}
+
+/* ---------- Категорії ---------- */
+.category-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+}
+
+.category-list a {
+  display: block;
+  height: 100%;
+  padding: 1rem 1.25rem;
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-left: 6px solid var(--color-secondary);
+  border-radius: var(--radius);
+  color: var(--color-text);
+  text-decoration: none;
+}
+
+.category-list a:hover {
+  box-shadow: var(--shadow);
+}
+
+.category-list strong {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+}
+
+.category-list span {
+  color: var(--color-text-muted);
+}
+
+/* ---------- Прості кроки (ol з h3) ---------- */
+.steps-simple {
+  padding-left: 1.4rem;
+  display: grid;
+  gap: 0.5rem;
+}
+
+.steps-simple li::marker {
+  font-weight: 700;
+  color: var(--color-primary-dark);
+}
+
+.steps-simple h3 {
+  margin-bottom: 0.2rem;
+}
+
+/* ---------- Картка рецепта (єдиний шаблон) ---------- */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1.25rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.recipe-card {
+  height: 100%;
+  background: var(--color-white);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.recipe-card img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+
+.recipe-card-body {
+  padding: 1rem;
+}
+
+.recipe-card-body h3 {
+  margin-bottom: 0.4rem;
+}
+
+.recipe-card-body h3 a {
+  color: var(--color-text);
+}
+
+.recipe-card-body h3 a:hover {
+  color: var(--color-primary-dark);
+}
+
+.recipe-card-cat {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.4rem;
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+}
+
+.meta-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1rem;
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+}
+
+.badge {
+  display: inline-block;
+  background: var(--color-accent);
+  color: var(--color-text);
+  font-size: 0.85rem;
+  font-weight: 700;
+  font-style: italic;
+  padding: 0.1rem 0.6rem;
+  border-radius: 999px;
+}
+
+/* ---------- Сторінка рецепта ---------- */
+.breadcrumbs {
+  list-style: none;
+  margin: 0 0 1.25rem;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  font-size: 0.95rem;
+}
+
+.breadcrumbs li + li::before {
+  content: "/";
+  margin-right: 0.4rem;
+  color: var(--color-text-muted);
+}
+
+.recipe-facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 2rem;
+  margin: 1rem 0 1.5rem;
+}
+
+.recipe-facts dt {
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+}
+
+.recipe-facts dd {
+  margin: 0;
+  font-weight: 700;
+}
+
+.recipe-photo {
+  margin: 0 0 2rem;
+}
+
+.recipe-photo img {
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.recipe-photo figcaption {
+  margin-top: 0.5rem;
+  font-weight: 700;
+  font-style: italic;
+  color: var(--color-text-muted);
+}
+
+.recipe-body {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 2rem;
+  align-items: start;
+  margin-bottom: 2rem;
+}
+
+.recipe-ingredients {
+  background: var(--color-white);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 1.25rem;
+}
+
+.recipe-ingredients h3 {
+  margin-top: 1rem;
+}
+
+.recipe-steps li {
+  margin-bottom: 0.9rem;
+  padding-left: 0.3rem;
+}
+
+.recipe-steps li::marker {
+  font-weight: 700;
+  color: var(--color-primary-dark);
+}
+
+.recipe-actions {
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 1.25rem;
+  margin-bottom: 2.5rem;
+}
+
+.recipe-actions .btn {
+  margin: 0 0.5rem 0.5rem 0;
+}
+
+/* ---------- Форми ---------- */
+.form {
+  max-width: 480px;
+  background: var(--color-white);
+  padding: 1.5rem;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form label {
+  display: block;
+  font-weight: 700;
+  margin-bottom: 0.3rem;
+}
+
+.form input,
+.form select,
+.form textarea {
+  width: 100%;
+  padding: 0.6rem 0.8rem;
+  border: 1px solid var(--color-field-border);
+  border-radius: 8px;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  background: var(--color-bg);
+  color: var(--color-text);
+}
+
+.form textarea {
+  resize: vertical;
+}
+
+.form ::placeholder {
+  color: var(--color-text-muted);
+  opacity: 1;
+}
+
+.form-hint {
+  margin: 0.3rem 0 0;
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+}
+
+.form-check {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+}
+
+.form-check input {
+  width: 1.2rem;
+  height: 1.2rem;
+  margin-top: 0.2rem;
+  flex-shrink: 0;
+  accent-color: var(--color-primary-dark);
+}
+
+.form .form-check label {
+  font-weight: 400;
+  margin: 0;
+}
+
+.form-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.form-footer {
+  margin: 1rem 0 0;
+}
+
+/* Форма фільтрів у каталозі — на всю ширину */
+.filters {
+  max-width: none;
+  margin-bottom: 2rem;
+}
+
+.filters-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 0 1.25rem;
+  align-items: end;
+}
+
+/* ---------- Контакти / Про нас ---------- */
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.5rem;
+  align-items: start;
+}
+
+address {
+  font-style: normal;
+}
+
+.team-grid {
+  list-style: none;
+  margin: 1.25rem 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.25rem;
+}
+
+.person-card {
+  background: var(--color-white);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 1.25rem;
+  text-align: center;
+}
+
+.person-card img {
+  width: 140px;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin: 0 auto 0.75rem;
+}
+
+.person-card h3 {
+  margin-bottom: 0.2rem;
+}
+
+.person-card p {
+  margin: 0;
+  color: var(--color-text-muted);
+}
+
+[hidden] { display: none !important; }
+.connection-status:not(:empty), .connection-note { margin-top: 1rem; padding: 0.8rem; background: var(--color-bg); border-left: 4px solid var(--color-secondary); }
+.btn:disabled { opacity: 0.6; cursor: wait; }
+.header-inner { flex-wrap: wrap; }
+/* Account and saved recipes */
+.auth-panel { max-width: 36rem; }
+.auth-switch { display: flex; flex-wrap: wrap; gap: 0.65rem; margin-block: 1rem; }
+.auth-switch [aria-current="true"] { text-decoration: underline; text-underline-offset: 0.2em; }
+.recipe-card-body .btn { margin-top: 0.75rem; }
+#saved-status, #contact-status { min-height: 1.5em; }
+
+.form :is(input, textarea, select):user-invalid,
+.form [aria-invalid="true"] { border: 2px solid #9b241d; background-color: #fff5f4; }
+.form [role="alert"]:not(:empty), .field-error { color: #8e2018; font-weight: 600; }
+.form label { overflow-wrap: anywhere; }
+.btn, button { white-space: normal; }
