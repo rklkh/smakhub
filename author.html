@@ -44,7 +44,7 @@
     <form id="recipe-editor" class="form">
       <div class="form-group"><label for="edit-name">Назва рецепта</label><input id="edit-name" name="title" required minlength="3" maxlength="160"></div>
       <div class="form-group"><label for="edit-desc">Короткий опис</label><textarea id="edit-desc" name="description" maxlength="1200" rows="2"></textarea></div>
-      <div class="form-group"><label for="edit-category">Категорія</label><select id="edit-category" name="category" required></select></div>
+      <div class="form-group"><label for="edit-category">Категорія</label><select id="edit-category" name="category" required><option value="">Оберіть категорію</option></select></div>
       <div class="form-group"><label for="edit-cuisine">Кухня</label><input id="edit-cuisine" name="cuisine" maxlength="80" placeholder="Наприклад, українська"></div>
       <div class="form-group"><label for="edit-time">Час приготування, хв</label><input id="edit-time" name="minutes" type="number" min="1" max="10080" required></div>
       <div class="form-group"><label for="edit-servings">Порцій</label><input id="edit-servings" name="servings" type="number" min="1" max="1000" value="2" required></div>
@@ -54,7 +54,7 @@
       <label><input type="checkbox" name="vegetarian"> Вегетаріанська страва</label>
       <div class="form-group"><label for="edit-ingredients">Інгредієнти та кількість</label><textarea id="edit-ingredients" name="ingredients" required rows="5" maxlength="18000" placeholder="Картопля | 500 г"></textarea><small>Кожен продукт з нового рядка. Назву і кількість розділіть символом |.</small></div>
       <div class="form-group"><label for="edit-steps">Кроки приготування</label><textarea id="edit-steps" name="steps" required rows="6" maxlength="40000"></textarea><small>Запишіть кожен крок з нового рядка.</small></div>
-      <div class="form-group"><label for="edit-photo">Фото готової страви</label><input type="file" id="edit-photo" name="photo" accept="image/jpeg,image/png,image/webp"><small>JPEG, PNG або WebP до 5 МБ. Для подання на модерацію додайте фото.</small><img id="current-photo" width="160" alt="Поточне фото рецепта" hidden></div>
+      <div class="form-group"><label for="edit-photo">Фото готової страви</label><input type="file" id="edit-photo" name="photo" accept="image/jpeg,image/png,image/webp"><small>JPEG, PNG або WebP до 5 МБ. Для подання на модерацію додайте фото.</small><img id="current-photo" src="/images/hero.webp" width="160" alt="Поточне фото рецепта" hidden></div>
       <p><button class="btn" type="submit" name="intent" value="pending">На модерацію</button> <button class="btn btn-outline" type="submit" name="intent" value="draft">Зберегти чернетку</button> <button class="btn btn-outline" type="submit" name="intent" value="moderator" hidden>Зберегти зміни модератора</button> <button type="button" id="close-editor">Закрити</button></p>
       <p id="form-status" role="status"></p>
     </form>
