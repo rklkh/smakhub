@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Мої рецепти — SmakHub</title>
+  <meta name="description" content="Створюйте рецепти, зберігайте чернетки та відстежуйте рішення модератора.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,wght@0,400;0,700;1,700&amp;family=Playfair+Display:wght@600;700&amp;display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="images/favicon.png">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Перейти до вмісту</a>
+
+  <header class="site-header">
+    <nav class="container header-inner" aria-label="Головна навігація">
+      <a class="logo" href="/index.html">
+        <img src="/images/logo.webp" alt="" width="36" height="44">
+        <span>SmakHub</span>
+      </a>
+      <div class="primary-links">
+        <a href="/index.html">Головна</a>
+        <a href="/catalog.html">Рецепти</a>
+      </div>
+      <a class="account-link" href="/account.html" aria-current="page">
+        <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round">
+          <circle cx="12" cy="8" r="3.5"></circle>
+          <path d="M5 21v-1a7 7 0 0 1 14 0v1"></path>
+        </svg>
+        <span>Кабінет</span>
+      </a>
+    </nav>
+  </header>
+
+  <main id="main" class="section"><div class="container">
+<h1>Мої рецепти</h1>
+<p id="editor-status" role="status">Завантаження…</p><p id="editor-login" hidden><a href="account.html">Увійти в акаунт</a></p>
+
+<div id="author-tools" hidden>
+  <p><button id="new-recipe" class="btn" type="button">Створити рецепт</button> <a id="staff-link" href="admin.html" hidden>Модерація</a></p>
+  <section id="edit-panel" hidden aria-labelledby="edit-title">
+    <h2 id="edit-title">Новий рецепт</h2>
+    <form id="recipe-editor" class="form">
+      <div class="form-group"><label for="edit-name">Назва рецепта</label><input id="edit-name" name="title" required minlength="3" maxlength="160"></div>
+      <div class="form-group"><label for="edit-desc">Короткий опис</label><textarea id="edit-desc" name="description" maxlength="1200" rows="2"></textarea></div>
+      <div class="form-group"><label for="edit-category">Категорія</label><select id="edit-category" name="category" required><option value="">Оберіть категорію</option></select></div>
+      <div class="form-group"><label for="edit-cuisine">Кухня</label><input id="edit-cuisine" name="cuisine" maxlength="80" placeholder="Наприклад, українська"></div>
+      <div class="form-group"><label for="edit-time">Час приготування, хв</label><input id="edit-time" name="minutes" type="number" min="1" max="10080" required></div>
+      <div class="form-group"><label for="edit-servings">Порцій</label><input id="edit-servings" name="servings" type="number" min="1" max="1000" value="2" required></div>
+      <div class="form-group"><label for="edit-difficulty">Складність</label><select id="edit-difficulty" name="difficulty"><option value="easy">Легко</option><option value="medium">Середньо</option><option value="hard">Складно</option></select></div>
+      <div class="form-group"><label for="edit-budget">Бюджет</label><select id="edit-budget" name="cost_band"><option value="">Не вказано</option><option value="budget">Економний</option><option value="standard">Середній</option><option value="premium">Високий</option></select></div>
+      <fieldset><legend>Потрібний посуд</legend><label><input type="checkbox" name="cookware" value="pan"> Сковорода</label> <label><input type="checkbox" name="cookware" value="pot"> Каструля</label> <label><input type="checkbox" name="cookware" value="microwave"> Мікрохвильовка</label></fieldset>
+      <label><input type="checkbox" name="vegetarian"> Вегетаріанська страва</label>
+      <div class="form-group"><label for="edit-ingredients">Інгредієнти та кількість</label><textarea id="edit-ingredients" name="ingredients" required rows="5" maxlength="18000" placeholder="Картопля | 500 г"></textarea><small>Кожен продукт з нового рядка. Назву і кількість розділіть символом |.</small></div>
+      <div class="form-group"><label for="edit-steps">Кроки приготування</label><textarea id="edit-steps" name="steps" required rows="6" maxlength="40000"></textarea><small>Запишіть кожен крок з нового рядка.</small></div>
+      <div class="form-group"><label for="edit-photo">Фото готової страви</label><input type="file" id="edit-photo" name="photo" accept="image/jpeg,image/png,image/webp"><small>JPEG, PNG або WebP до 5 МБ. Для подання на модерацію додайте фото.</small><img id="current-photo" src="/images/hero.webp" width="160" alt="Поточне фото рецепта" hidden></div>
+      <p><button class="btn" type="submit" name="intent" value="pending">На модерацію</button> <button class="btn btn-outline" type="submit" name="intent" value="draft">Зберегти чернетку</button> <button class="btn btn-outline" type="submit" name="intent" value="moderator" hidden>Зберегти зміни модератора</button> <button type="button" id="close-editor">Закрити</button></p>
+      <p id="form-status" role="status"></p>
+    </form>
+  </section>
+  <section aria-labelledby="own-heading"><h2 id="own-heading">Мої публікації</h2><div id="owner-recipes"></div></section>
+</div>
+</div></main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>&copy; 2026 SmakHub. Навчальний проєкт, КПІ ім. Ігоря Сікорського.</p>
+      <nav aria-label="Додаткові посилання"><ul><li><a href="/about.html">Про проєкт</a></li><li><a href="/contacts.html">Контакти</a></li></ul></nav>
+    </div>
+  </footer>
+
+  <script src="js/main.js" defer></script>
+  <script src="js/config.js" defer></script>
+  <script src="js/vendor/supabase.js" defer></script>
+  <script src="js/client.js" defer></script>
+  <script src="js/backend.js" defer></script>
+  <script src="js/editor.js" defer></script>
+  <script src="js/lang.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,133 @@
+/* ==========================================================
+   SmakHub — спільні стилі
+   Кольори та шрифти взяті з брендбуку (Лабораторна 1, розділ 4)
+   ========================================================== */
+
+:root {
+  --color-primary: #E85A4F;      /* теракотовий — фірмовий (логотип, декор) */
+  --color-primary-dark: #B3382C; /* темніший відтінок для тексту/кнопок: контраст ≥ 5.5:1 (WCAG AA) */
+  --color-secondary: #6FAE8C;    /* м'ятний — другорядні дії, фільтри (темний текст, контраст 5.5:1) */
+  --color-bg: #FAF7F2;           /* майже білий фон */
+  --color-text: #2E2A26;         /* темно-сірий текст */
+  --color-text-muted: #6B645C;   /* другорядний текст, плейсхолдери (контраст 5.4:1) */
+  --color-accent: #F2B138;       /* оцінки, бейджі (з темним текстом) */
+  --color-white: #FFFFFF;
+  --color-border: #E8E1D6;       /* декоративні межі карток */
+  --color-field-border: #857C72; /* межі полів форм (контраст ≥ 3:1) */
+
+  --font-heading: "Playfair Display", Georgia, serif;
+  --font-body: "Nunito Sans", Inter, Arial, sans-serif;
+
+  --radius: 12px;
+  --shadow: 0 4px 14px rgba(46, 42, 38, 0.08);
+  --container-width: 1100px;
+}
+
+/* ---------- Базові стилі ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--color-text);
+  background: var(--color-bg);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+h1, h2, h3 {
+  font-family: var(--font-heading);
+  line-height: 1.25;
+  margin: 0 0 0.75rem;
+}
+
+h1 { font-size: 2.25rem; }
+h2 { font-size: 1.6rem; }
+h3 { font-size: 1.25rem; }
+
+p { margin: 0 0 1rem; }
+
+ul, ol { margin: 0 0 1rem; padding-left: 1.4rem; }
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  background: var(--color-border); /* рамка залишається видимою, поки фото не додано/не завантажилось */
+}
+
+a {
+  color: var(--color-primary-dark);
+}
+
+a:hover {
+  text-decoration-thickness: 2px;
+}
+
+:focus-visible {
+  outline: 3px solid var(--color-text);
+  outline-offset: 2px;
+}
+
+.container {
+  width: 100%;
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.lead {
+  font-size: 1.15rem;
+  max-width: 65ch;
+}
+
+/* Текст лише для скрінрідерів */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Посилання «Перейти до вмісту» для клавіатурної навігації */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  background: var(--color-text);
+  color: var(--color-white);
+  padding: 0.5rem 1rem;
+  z-index: 100;
+}
+
+.skip-link:focus {
+  left: 0;
+}
+
+
+/* Tables share the type, spacing and palette of recipe cards. */
+table { border-collapse: collapse; width: 100%; }
+caption { text-align: start; font-weight: 700; margin-block-end: .5rem; }
+th, td { padding: .65rem .8rem; border-block-end: 1px solid var(--color-border); text-align: start; vertical-align: top; overflow-wrap: anywhere; }
+th { color: var(--color-text); background: var(--color-bg); }
+blockquote, figcaption, .badge { font-style: italic; font-weight: 600; }

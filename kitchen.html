@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Кухонний планувальник — SmakHub</title>
+  <meta name="description" content="Підбір рецептів за продуктами, меню на кілька днів, список покупок і кулінарні терміни.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,wght@0,400;0,700;1,700&amp;family=Playfair+Display:wght@600;700&amp;display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="images/favicon.png">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/kitchen.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Перейти до вмісту</a>
+
+  <header class="site-header">
+    <nav class="container header-inner" aria-label="Головна навігація">
+      <a class="logo" href="/index.html">
+        <img src="/images/logo.webp" alt="" width="36" height="44">
+        <span>SmakHub</span>
+      </a>
+      <div class="primary-links">
+        <a href="/index.html">Головна</a>
+        <a href="/catalog.html">Рецепти</a>
+      </div>
+      <a class="account-link" href="/account.html">
+        <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round">
+          <circle cx="12" cy="8" r="3.5"></circle>
+          <path d="M5 21v-1a7 7 0 0 1 14 0v1"></path>
+        </svg>
+        <span>Кабінет</span>
+      </a>
+    </nav>
+  </header>
+
+  <main id="main">
+    <div class="container">
+      <h1>Кухонний планувальник</h1>
+      <nav aria-label="На цій сторінці"><p><a href="#pantry">Підібрати страву</a> · <a href="#meal-plan">Меню</a> · <a href="#shopping">Покупки</a> · <a href="#techniques">Кулінарні терміни</a></p></nav>
+      <section class="section" id="pantry" aria-labelledby="pantry-title">
+        <h2 id="pantry-title">Що є вдома?</h2>
+        <p>Перетягніть продукти в кошик або виберіть їх кнопками. У рецепті мають бути всі вибрані продукти.</p>
+        <div class="kitchen-chips" id="ingredient-options"></div>
+        <div class="kitchen-basket" id="ingredient-basket">
+          <h3>Мій кошик</h3>
+          <ul id="basket-items" class="kitchen-chips"></ul>
+          <p id="empty-basket">Кошик поки порожній.</p>
+        </div>
+        <form id="ingredient-form" class="form">
+          <div class="form-group"><label for="ingredient-name">Додати свій інгредієнт</label><input id="ingredient-name" type="text" maxlength="64" required autocomplete="off"></div>
+          <button class="btn btn-outline" type="submit">Додати до кошика</button>
+        </form>
+        <p><a class="btn" id="find-meals" href="catalog.html">Перейти до рецептів</a></p>
+      </section>
+      <section class="section" id="meal-plan" aria-labelledby="meal-plan-title">
+        <h2 id="meal-plan-title">Меню на кілька днів</h2>
+        <p>План і позначки покупок зберігаються в цьому браузері. Кожна страва додає до списку продукти на повну кількість порцій у рецепті.</p>
+        <form class="form" id="meal-form">
+          <div class="form-group"><label for="meal-date">Дата</label><input id="meal-date" type="date" required></div>
+          <div class="form-group"><label for="meal-search">Пошук страви за назвою</label><input id="meal-search" type="search" maxlength="100"></div>
+          <div class="form-group"><label for="meal-recipe">Рецепт</label><select id="meal-recipe" required><option value="">Оберіть рецепт</option></select></div>
+          <p id="meal-search-status" role="status"></p>
+          <button class="btn" type="submit">Додати до меню</button>
+        </form>
+        <ul id="meal-list" class="kitchen-list"></ul>
+      </section>
+      <section class="section" id="shopping" aria-labelledby="shopping-title">
+        <h2 id="shopping-title">Список покупок</h2>
+        <ul id="shopping-list" class="kitchen-list"></ul>
+        <p role="status" id="plan-status"></p>
+      </section>
+      <section class="section" id="techniques" aria-labelledby="techniques-title">
+        <h2 id="techniques-title">Кулінарні терміни</h2>
+        <dl>
+          <dt>Тушкувати</dt><dd>Готувати під кришкою на слабкому вогні з невеликою кількістю рідини.</dd>
+          <dt>Пасерувати</dt><dd>Повільно прогріти овочі в невеликій кількості олії до м’якості.</dd>
+          <dt>Бланшувати</dt><dd>Ненадовго опустити продукт в окріп, а потім швидко охолодити.</dd>
+          <dt>Аль денте</dt><dd>Ступінь готовності пасти, коли вона вже проварена, але зберігає пружність.</dd>
+          <dt>Збити вінчиком</dt><dd>Швидко перемішати суміш вінчиком до однорідності або появи піни.</dd>
+          <dt>Настояти</dt><dd>Залишити страву на певний час після приготування, щоб її смак став виразнішим.</dd>
+        </dl>
+      </section>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>&copy; 2026 SmakHub. Навчальний проєкт, КПІ ім. Ігоря Сікорського.</p>
+      <nav aria-label="Додаткові посилання"><ul><li><a href="/about.html">Про проєкт</a></li><li><a href="/contacts.html">Контакти</a></li></ul></nav>
+    </div>
+  </footer>
+
+  <script src="js/main.js" defer></script>
+  <script src="js/config.js" defer></script>
+  <script src="js/vendor/supabase.js" defer></script>
+  <script src="js/client.js" defer></script>
+  <script src="js/recipes.js" defer></script>
+  <script src="js/recipe-book.js" defer></script>
+  <script src="js/backend.js" defer></script>
+  <script src="js/kitchen.js" defer></script>
+  <script src="js/lang.js" defer></script>
+</body>
+</html>

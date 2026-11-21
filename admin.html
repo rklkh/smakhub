@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Модерація — SmakHub</title>
+  <meta name="description" content="Керування рецептами, коментарями, користувачами й тематичними добірками.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,wght@0,400;0,700;1,700&amp;family=Playfair+Display:wght@600;700&amp;display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="images/favicon.png">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Перейти до вмісту</a>
+
+  <header class="site-header">
+    <nav class="container header-inner" aria-label="Головна навігація">
+      <a class="logo" href="/index.html">
+        <img src="/images/logo.webp" alt="" width="36" height="44">
+        <span>SmakHub</span>
+      </a>
+      <div class="primary-links">
+        <a href="/index.html">Головна</a>
+        <a href="/catalog.html">Рецепти</a>
+      </div>
+      <a class="account-link" href="/account.html" aria-current="page">
+        <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round">
+          <circle cx="12" cy="8" r="3.5"></circle>
+          <path d="M5 21v-1a7 7 0 0 1 14 0v1"></path>
+        </svg>
+        <span>Кабінет</span>
+      </a>
+    </nav>
+  </header>
+
+  <main id="main" class="section"><div class="container">
+<h1>Модерація</h1>
+<p id="editor-status" role="status">Завантаження…</p><p id="editor-login" hidden><a href="account.html">Увійти в акаунт</a></p>
+
+<div id="admin-tools" hidden>
+  <section><h2>Рецепти</h2><form id="mod-filter" class="form"><label>Статус <select name="status"><option value="pending">На модерації</option><option value="published">Опубліковано</option><option value="rejected">Відхилено</option><option value="">Усі</option></select></label><label>Назва <input type="search" name="title"></label><button class="btn">Показати</button></form><div id="mod-recipes"></div></section>
+  <section><h2>Коментарі</h2><div id="mod-comments"></div></section>
+  <section><h2>Категорії</h2><form id="category-form" class="form"><label>Код категорії <input name="slug" required maxlength="60" pattern="[a-z0-9][a-z0-9\-]{0,59}" placeholder="soup"></label><label>Назва категорії <input name="label" required maxlength="80"></label><button class="btn">Зберегти категорію</button></form><div id="mod-categories"></div></section>
+  <section><h2>Добірки на головній</h2><form id="collection-form" class="form"><input type="hidden" name="id"><label>Назва добірки <input name="title" required maxlength="100"></label><label>Знайти опублікований рецепт <input name="search" type="search"></label><button id="find-collection-recipes" type="button">Пошук рецептів</button><div id="collection-choices"></div><ul id="collection-selected"></ul><button class="btn">Зберегти добірку</button><button id="reset-collection" type="button">Нова добірка</button></form><div id="mod-collections"></div></section>
+  <section><h2>Користувачі</h2><div id="mod-users"></div></section>
+</div>
+</div></main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>&copy; 2026 SmakHub. Навчальний проєкт, КПІ ім. Ігоря Сікорського.</p>
+      <nav aria-label="Додаткові посилання"><ul><li><a href="/about.html">Про проєкт</a></li><li><a href="/contacts.html">Контакти</a></li></ul></nav>
+    </div>
+  </footer>
+
+  <script src="js/main.js" defer></script>
+  <script src="js/config.js" defer></script>
+  <script src="js/vendor/supabase.js" defer></script>
+  <script src="js/client.js" defer></script>
+  <script src="js/backend.js" defer></script>
+  <script src="js/editor.js" defer></script>
+  <script src="js/lang.js" defer></script>
+</body>
+</html>

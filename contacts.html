@@ -15,25 +15,23 @@
   <a class="skip-link" href="#main">Перейти до вмісту</a>
 
   <header class="site-header">
-    <div class="container header-inner">
-      <a class="logo" href="index.html">
-        <img src="images/logo.webp" alt="" width="36" height="44">
+    <nav class="container header-inner" aria-label="Головна навігація">
+      <a class="logo" href="/index.html">
+        <img src="/images/logo.webp" alt="" width="36" height="44">
         <span>SmakHub</span>
       </a>
-      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Відкрити меню">&#9776;</button>
-      <nav id="site-nav" class="site-nav" aria-label="Головна навігація">
-        <ul>
-          <li><a href="index.html">Головна</a></li>
-          <li><a href="catalog.html">Каталог</a></li>
-          <li><a href="recipe.html">Рецепт</a></li>
-          <li><a href="about.html">Про нас</a></li>
-          <li><a href="contacts.html" aria-current="page">Контакти</a></li>
-          <li><a href="account.html">Мій акаунт</a></li>
-          <li><a href="login.html">Вхід</a></li>
-          <li><a href="register.html">Реєстрація</a></li>
-        </ul>
-      </nav>
-    </div>
+      <div class="primary-links">
+        <a href="/index.html">Головна</a>
+        <a href="/catalog.html">Рецепти</a>
+      </div>
+      <a class="account-link" href="/account.html">
+        <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round">
+          <circle cx="12" cy="8" r="3.5"></circle>
+          <path d="M5 21v-1a7 7 0 0 1 14 0v1"></path>
+        </svg>
+        <span>Кабінет</span>
+      </a>
+    </nav>
   </header>
 
   <main id="main">
@@ -46,7 +44,7 @@
           <h2 id="info-title">Як із нами зв'язатися</h2>
           <address>
             <p><strong>Електронна пошта:</strong><br><a href="mailto:rkaliukh@gmail.com">rkaliukh@gmail.com</a></p>
-            <p><strong>Адреса:</strong><br>КПІ ім. Ігоря Сікорського,<br>просп. Берестейський, 37, Київ</p>
+            <p><strong>Адреса:</strong><br>Інститут прикладного системного аналізу,<br>проспект Брестейський, 37, Київ</p>
           </address>
           <h3>Про що можна написати</h3>
           <ul>
@@ -59,15 +57,17 @@
 
         <section aria-labelledby="form-title">
           <h2 id="form-title">Форма зворотного зв'язку</h2>
-          <form class="form" action="#" method="post">
-        <p class="connection-note">Сервіс перебуває на етапі підключення. Підтвердження результату з’явиться після обробки запиту.</p>
+          <p id="contact-status" role="status">Перевіряємо доступ до форми…</p>
+          <p id="contact-sign-in" hidden><a href="account.html">Увійдіть, щоб залишити повідомлення.</a> Ви також можете написати нам напряму на електронну пошту.</p>
+          <form class="form" id="contact-form" hidden action="#" method="post">
+
             <div class="form-group">
               <label for="c-name">Ваше ім'я</label>
-              <input type="text" id="c-name" name="name" required autocomplete="name">
+              <input type="text" id="c-name" name="name" required minlength="3" maxlength="80" autocomplete="name">
             </div>
             <div class="form-group">
               <label for="c-email">Електронна пошта</label>
-              <input type="email" id="c-email" name="email" required autocomplete="email">
+              <input type="email" id="c-email" name="email" required maxlength="254" autocomplete="email">
             </div>
             <div class="form-group">
               <label for="c-topic">Тема звернення</label>
@@ -80,7 +80,7 @@
             </div>
             <div class="form-group">
               <label for="c-message">Повідомлення</label>
-              <textarea id="c-message" name="message" rows="5" required></textarea>
+              <textarea id="c-message" name="message" rows="5" required minlength="10" maxlength="4000"></textarea>
             </div>
             <div class="form-group form-check">
               <input type="checkbox" id="c-consent" name="consent" required>
@@ -96,23 +96,15 @@
   <footer class="site-footer">
     <div class="container footer-inner">
       <p>&copy; 2026 SmakHub. Навчальний проєкт, КПІ ім. Ігоря Сікорського.</p>
-      <nav aria-label="Навігація у футері">
-        <ul>
-          <li><a href="index.html">Головна</a></li>
-          <li><a href="catalog.html">Каталог</a></li>
-          <li><a href="recipe.html">Рецепт</a></li>
-          <li><a href="account.html">Мій акаунт</a></li>
-          <li><a href="login.html">Вхід</a></li>
-          <li><a href="register.html">Реєстрація</a></li>
-          <li><a href="about.html">Про нас</a></li>
-          <li><a href="contacts.html">Контакти</a></li>
-        </ul>
-      </nav>
+      <nav aria-label="Додаткові посилання"><ul><li><a href="/about.html">Про проєкт</a></li><li><a href="/contacts.html">Контакти</a></li><li><a href="kitchen.html">Кухонні інструменти</a></li></ul></nav>
     </div>
   </footer>
 
   <script src="js/main.js" defer></script>
   <script src="js/config.js" defer></script>
+  <script src="js/vendor/supabase.js" defer></script>
+  <script src="js/client.js" defer></script>
   <script src="js/backend.js" defer></script>
+  <script src="js/lang.js" defer></script>
 </body>
 </html>
