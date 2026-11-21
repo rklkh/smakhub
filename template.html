@@ -15,22 +15,23 @@
   <a class="skip-link" href="#main">Перейти до вмісту</a>
 
   <header class="site-header">
-    <div class="container header-inner">
-      <a class="logo" href="index.html">
-        <img src="images/logo.webp" alt="" width="36" height="44">
+    <nav class="container header-inner" aria-label="Головна навігація">
+      <a class="logo" href="/index.html">
+        <img src="/images/logo.webp" alt="" width="36" height="44">
         <span>SmakHub</span>
       </a>
-      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Відкрити меню">&#9776;</button>
-      <nav id="site-nav" class="site-nav" aria-label="Головна навігація">
-        <ul>
-          <li><a href="index.html">Головна</a></li>
-          <li><a href="catalog.html">Рецепти</a></li>
-          <li><a href="contacts.html">Контакти</a></li>
-          <li><a href="saved.html">Збережене</a></li>
-          <li><a href="account.html" data-account-link>Увійти</a></li>
-        </ul>
-      </nav>
-    </div>
+      <div class="primary-links">
+        <a href="/index.html">Головна</a>
+        <a href="/catalog.html">Рецепти</a>
+      </div>
+      <a class="account-link" href="/account.html">
+        <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round">
+          <circle cx="12" cy="8" r="3.5"></circle>
+          <path d="M5 21v-1a7 7 0 0 1 14 0v1"></path>
+        </svg>
+        <span>Кабінет</span>
+      </a>
+    </nav>
   </header>
 
   <main id="main">
@@ -43,7 +44,7 @@
   <footer class="site-footer">
     <div class="container footer-inner">
       <p>&copy; 2026 SmakHub. Навчальний проєкт, КПІ ім. Ігоря Сікорського.</p>
-      <nav aria-label="Додаткові посилання"><ul><li><a href="about.html">Про проєкт</a></li><li><a href="kitchen.html">Кухонні інструменти</a></li></ul></nav>
+      <nav aria-label="Додаткові посилання"><ul><li><a href="/about.html">Про проєкт</a></li><li><a href="/contacts.html">Контакти</a></li><li><a href="kitchen.html">Кухонні інструменти</a></li></ul></nav>
     </div>
   </footer>
 

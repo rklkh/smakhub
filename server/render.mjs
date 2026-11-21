@@ -19,7 +19,8 @@ export function renderRecipe(template,row,origin,photo,category) {
     .replace('<li data-crumb></li>',()=>'<li data-crumb>'+title+'</li>')
     .replace('<p class="lead"></p>',()=>'<p class="lead">'+description+'</p>')
     .replace(/<dd><\/dd>/g,()=>'<dd>'+escape(facts[fact++])+'</dd>')
-    .replace('<img src="/images/hero.webp" alt="" width="1200" height="800">',()=>'<img src="'+escape(photo)+'" alt="'+title+'" width="1200" height="800">')
+    .replace('<figure class="recipe-photo" hidden>',photo ? '<figure class="recipe-photo">' : '<figure class="recipe-photo" hidden>')
+    .replace('<img src="/images/hero.webp" alt="" width="1200" height="800">',()=>photo ? '<img src="'+escape(photo)+'" alt="'+title+'" width="1200" height="800">' : '<img alt="" width="1200" height="800" src="/images/hero.webp" loading="lazy">')
     .replace('<ul></ul>',()=>'<ul>'+list(row.ingredients)+'</ul>')
     .replace('<ol></ol>',()=>'<ol>'+list(row.steps)+'</ol>');
 }

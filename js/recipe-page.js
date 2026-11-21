@@ -6,9 +6,12 @@ window.smakRecipeReady = (async function () {
   const article = document.querySelector('.recipe');
   const missing = document.querySelector('#missing-recipe');
   const api = await window.smakApi;
-  const { data:row, error } = await api.from('recipes').select('*').eq('slug',slug).eq('status','published').maybeSingle();
+  let row, error;
+  try {
+    ({data:row, error} = await api.from('recipes').select('*').eq('slug',slug).eq('status','published').maybeSingle());
+  } catch (failure) { error = failure; }
   const fallback = Object.hasOwn(window.SMAKHUB_RECIPES,slug) && window.SMAKHUB_RECIPES[slug];
-  const recipe = row || (error && fallback);
+  const recipe = row || ((error || ['127.0.0.1','localhost'].includes(location.hostname)) && fallback);
   if (!recipe) {
     article.hidden = true;
     missing.hidden = false;
@@ -27,7 +30,9 @@ window.smakRecipeReady = (async function () {
   const facts = [category || categories[recipe.category] || recipe.category, (recipe.minutes || recipe.time) + ' хв', difficulty[recipe.difficulty], recipe.servings];
   article.querySelectorAll('.recipe-facts dd').forEach((el,i) => el.textContent = facts[i]);
   const image = article.querySelector('.recipe-photo img');
-  image.src = window.smakImage(row ? row.image_path : 'images/recipes/'+slug+'.webp');
+  const photo = row ? row.image_path : recipe.image_path === null ? null : 'images/recipes/'+slug+'.webp';
+  image.closest('figure').hidden = !photo;
+  if (photo) image.src = window.smakImage(photo);
   image.alt = recipe.title;
   function fill(selector,values) {
     article.querySelector(selector).replaceChildren(...values.map(value => {

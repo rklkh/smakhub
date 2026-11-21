@@ -1,7 +1,6 @@
 (function () {
   'use strict';
 
-  const accountLink = document.querySelector('[data-account-link]');
   const accountStatus = document.querySelector('#account-status');
   const contactForm = document.querySelector('#contact-form');
   const savedStatus = document.querySelector('#saved-status');
@@ -49,10 +48,6 @@
     });
   }
 
-  function updateAccountLink() {
-    if (accountLink) accountLink.textContent = user ? 'Акаунт' : 'Увійти';
-  }
-
   function initAccount(api) {
     const guest = document.querySelector('#account-guest');
     const member = document.querySelector('#account-member');
@@ -82,13 +77,24 @@
       showMode();
     });
 
+    let dashboardUser;
     function render() {
       guest.hidden = Boolean(user);
       member.hidden = !user;
       accountStatus.textContent = '';
-      updateAccountLink();
       const adminLink = document.getElementById('admin-link');
       adminLink.hidden = true;
+      if (dashboardUser !== user?.id) {
+        dashboardUser = user?.id;
+        document.querySelector('#saved-recipes').replaceChildren();
+        for (const id of ['view-count', 'saved-count', 'rating-count', 'rating-mean']) {
+          document.getElementById(id).textContent = '—';
+        }
+        if (user) {
+          void initSaved(api);
+          void initDashboard(api, user.id);
+        }
+      }
       if (user) {
         const member = user.id;
         api.rpc('is_smak_admin').then(({data}) => {
@@ -248,21 +254,27 @@
   async function initSaved(api) {
     if (!user) {
       savedStatus.textContent = 'Увійдіть, щоб побачити свої збережені рецепти.';
-      document.querySelector('#saved-sign-in').hidden = false;
+      const link = document.querySelector('#saved-sign-in');
+      if (link) link.hidden = false;
       return;
     }
 
     const list = document.querySelector('#saved-recipes');
+    const owner = user.id;
+    savedStatus.textContent = 'Завантаження…';
     function renderCount() {
       savedStatus.textContent = list.childElementCount
         ? 'Збережено рецептів: ' + list.childElementCount
         : 'Тут з’являться рецепти, які ви збережете.';
+      if (accountStatus) document.querySelector('#saved-count').textContent = list.childElementCount;
     }
 
     try {
       const rows = unwrap(await api.from('favorites')
         .select('recipe_id, recipes!inner(slug,title,description,image_path)').eq('user_id', user.id)
         .eq('recipes.status', 'published').order('created_at', { ascending: false }));
+      if (owner !== user?.id) return;
+      list.replaceChildren();
       for (const row of rows) {
         const recipe = row.recipes;
         const item = element('li');
@@ -302,7 +314,23 @@
       }
       renderCount();
     } catch {
-      savedStatus.textContent = 'Не вдалося завантажити збережені рецепти.';
+      if (owner === user?.id) savedStatus.textContent = 'Не вдалося завантажити збережені рецепти.';
+    }
+  }
+
+  async function initDashboard(api, owner) {
+    const status = document.querySelector('#dashboard-stats-status');
+    status.textContent = 'Завантаження…';
+    try {
+      const totals = unwrap(await api.rpc('smak_my_stats').single());
+      if (owner !== user?.id) return;
+      document.querySelector('#view-count').textContent = totals.viewed;
+      document.querySelector('#rating-count').textContent = totals.rated;
+      document.querySelector('#rating-mean').textContent = totals.mean === null ? '—' :
+        new Intl.NumberFormat(document.documentElement.lang, { maximumFractionDigits: 1 }).format(totals.mean) + ' / 5';
+      status.textContent = '';
+    } catch {
+      if (owner === user?.id) status.textContent = 'Не вдалося завантажити статистику.';
     }
   }
 
@@ -311,11 +339,10 @@
       const api = await window.smakApi;
       const session = unwrap(await api.auth.getSession());
       user = session.session?.user || null;
-      updateAccountLink();
       if (accountStatus) initAccount(api);
       if (contactForm) initContact(api);
       if (saveButton && await window.smakRecipeReady) await initSaveButton(api);
-      if (savedStatus) await initSaved(api);
+      if (savedStatus && !accountStatus) await initSaved(api);
     } catch {
       const status = accountStatus || savedStatus || document.querySelector('#contact-status, #save-status');
       if (status) status.textContent = settingsError;

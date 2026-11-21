@@ -17,13 +17,13 @@ console.log('Публічні файли підготовлено в dist/');
   fs.writeFileSync(path.join(root,'server/public-config.mjs'),
     'export const project = '+JSON.stringify(supabaseUrl)+';\nexport const apiKey = '+JSON.stringify(supabasePublishableKey)+';\n');
   const {renderRecipe} = await import('../server/render.mjs');
-  const recipes = require('../js/recipes.js');
+  const recipes = {...require('../js/recipes.js'), ...require('../js/recipe-book.js')};
   const template = fs.readFileSync(path.join(root,'recipe.html'),'utf8');
   const category = { breakfast:'Сніданки', lunch:'Обіди', dinner:'Вечері', dessert:'Десерти' };
   const origin = 'https://smakhub.kaliukhromanpc.workers.dev';
   for (const [slug,row] of Object.entries(recipes)) {
     const dir = path.join(dist,'recipes',slug);
     fs.mkdirSync(dir,{recursive:true});
-    fs.writeFileSync(path.join(dir,'index.html'),renderRecipe(template,{slug,...row},origin,'/images/recipes/'+slug+'.webp',category[row.category]));
+    fs.writeFileSync(path.join(dir,'index.html'),renderRecipe(template,{slug,...row},origin,row.image_path === null ? null : '/images/recipes/'+slug+'.webp',category[row.category]));
   }
 })().catch(error => { console.error(error); process.exitCode = 1; });

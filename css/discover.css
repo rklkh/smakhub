@@ -1,0 +1,129 @@
+/* The discovery pages use the sage and terracotta palette of prototype 11. */
+.home-page,
+.catalog-page {
+  --discover-sage: #e8eee1;
+  --discover-ink: #263c30;
+  --discover-warm: #f4e3d7;
+  --discover-border: #dedfd3;
+}
+
+.home-intro {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
+  overflow: hidden;
+  margin-bottom: clamp(2rem, 6vw, 4rem);
+  border-radius: 1.5rem;
+  background: var(--discover-sage);
+}
+
+.home-intro .hero-text {
+  padding: clamp(1.5rem, 4vw, 3.3rem);
+}
+
+.home-intro h1 {
+  color: var(--discover-ink);
+  font-size: clamp(3.25rem, 6vw, 5.75rem);
+  letter-spacing: -0.045em;
+  line-height: 0.98;
+}
+
+.home-intro h1 em { color: var(--color-primary-dark); }
+.home-intro .lead { margin-block: 1.2rem; font-size: 1.05rem; }
+.home-intro .search-form { background: var(--color-white); }
+
+.home-feature {
+  position: relative;
+  display: grid;
+  align-items: end;
+  isolation: isolate;
+  min-height: 17rem;
+  color: white;
+  background: #402719;
+  text-decoration: none;
+}
+
+.home-feature img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.home-feature::after {
+  position: absolute;
+  z-index: 0;
+  inset: 32% 0 0;
+  background: linear-gradient(transparent, #24170fec);
+  content: "";
+}
+
+.home-feature-caption {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  padding: clamp(1.2rem, 3vw, 2.3rem);
+}
+
+.home-feature-caption strong {
+  font: 700 clamp(1.65rem, 3vw, 2.8rem)/1.2 var(--font-heading);
+}
+
+.home-feature:hover strong { text-decoration: underline; }
+.home-feature:focus-visible { outline-offset: -5px; outline-color: white; }
+
+.home-categories { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+.home-categories a {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  border: 1px solid var(--discover-border);
+  padding: 0.65rem;
+  color: var(--discover-ink);
+}
+.home-categories a:hover { background: var(--discover-sage); }
+.home-categories strong { font: 700 1rem/1.25 var(--font-body); }
+.home-categories img {
+  width: clamp(2.3rem, 4vw, 3.5rem);
+  aspect-ratio: 1;
+  flex: none;
+  object-fit: cover;
+  border-radius: 0.6rem;
+}
+
+.home-contribute {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: clamp(1.25rem, 4vw, 2.5rem);
+  border-radius: 1.2rem;
+  background: var(--discover-warm);
+}
+.home-contribute p { margin: 0; }
+
+.catalog-intro {
+  padding: clamp(1.3rem, 4vw, 2.75rem);
+  margin-bottom: 1.25rem;
+  border-radius: 1.25rem;
+  background: var(--discover-sage);
+  color: var(--discover-ink);
+}
+
+.catalog-intro .lead { margin-bottom: 0; }
+.catalog-page .filters { border: 1px solid var(--discover-border); box-shadow: none; }
+.home-page .recipe-card,
+.catalog-page .recipe-card { border: 1px solid var(--discover-border); box-shadow: none; }
+.home-page .recipe-card:hover,
+.catalog-page .recipe-card:hover { border-color: #9ca696; }
+
+@media (max-width: 940px) {
+  .home-categories { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
+@media (max-width: 680px) {
+  .home-intro { grid-template-columns: 1fr; }
+  .home-feature { min-height: clamp(15rem, 59vw, 22rem); }
+  .home-categories { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}

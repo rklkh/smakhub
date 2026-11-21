@@ -3,13 +3,15 @@
   const form = document.querySelector('.filters');
   const grid = document.querySelector('#results-title ~ .card-grid');
   const status = document.querySelector('#results-title + p');
+  const chips = document.querySelector('.active-filters');
+  const filterCount = document.querySelector('.filter-count');
   const nav = document.createElement('nav');
   nav.className = 'form-actions';
   nav.setAttribute('aria-label','Сторінки каталогу');
   grid.after(nav);
   status.setAttribute('role','status');
   const api = await window.smakApi;
-  const categories = new Map();
+  const categories = new Map(Object.entries({breakfast:'Сніданки', lunch:'Обіди', dinner:'Вечері', dessert:'Десерти'}));
   const aliases = {'яйце':'яйця','помідор':'помідори','огірок':'огірки','ізюм':'родзинки'};
   let sequence = 0;
   function element(tag,text,css) {
@@ -36,7 +38,8 @@
     const details = { easy:'Легко', medium:'Середньо', hard:'Складно' };
     body.append(element('p',categories.get(row.category) || row.category,'recipe-card-cat'),title,
       element('p',row.description),element('p',row.minutes+' хв · '+(details[row.difficulty] || row.difficulty)));
-    article.append(link,body);
+    if (row.image_path) article.append(link);
+    article.append(body);
     item.append(article);
     return item;
   }
@@ -45,6 +48,35 @@
     button.type = 'button';
     button.addEventListener('click',action);
     return button;
+  }
+  function renderChips(params) {
+    chips.replaceChildren();
+    const extra = ['difficulty','vegetarian','cost','tool'];
+    const total = extra.filter(key => params.get(key)).length;
+    filterCount.textContent = total;
+    filterCount.hidden = !total;
+    for (const [key, value] of params) {
+      const input = form.elements.namedItem(key);
+      if (!input || !value || !input.value) continue;
+      const label = input.labels?.[0]?.textContent.trim();
+      const option = input.selectedOptions?.[0]?.textContent;
+      const item = element('li');
+      const remove = button(input.type === 'checkbox' ? label : option || value, () => {
+        const next = new URLSearchParams(location.search);
+        next.delete(key);
+        next.delete('page');
+        update(next);
+        document.querySelector('#results-title').focus();
+      });
+      remove.removeAttribute('class');
+      remove.title = 'Видалити фільтр';
+      const mark = element('span','×');
+      mark.setAttribute('aria-hidden','true');
+      remove.append(mark);
+      item.append(remove);
+      chips.append(item);
+    }
+    chips.hidden = chips.childElementCount === 0;
   }
   function paramsFromForm() {
     const params = new URLSearchParams();
@@ -61,6 +93,24 @@
     update(p);
     document.querySelector('#results-title').scrollIntoView();
   }
+  function bundledResults(args) {
+    const normalize = value => value.trim().toLocaleLowerCase('uk');
+    return Object.entries(window.SMAKHUB_RECIPES)
+      .map(([slug, recipe]) => ({
+        ...recipe, slug, minutes: recipe.time, vegetarian: recipe.veg,
+        image_path: recipe.image_path === null ? null : 'images/recipes/'+slug+'.webp'
+      }))
+      .filter(row => normalize(row.title).includes(normalize(args.p_query)) &&
+        args.p_terms.every(term => row.ingredients.some(([name]) => normalize(name).includes(normalize(term)))) &&
+        (!args.p_category || row.category === args.p_category) &&
+        (!args.p_difficulty || row.difficulty === args.p_difficulty) &&
+        (!args.p_veg || row.vegetarian) &&
+        (!args.p_time || (args.p_time === 61 ? row.minutes > 60 : row.minutes <= args.p_time)) &&
+        (!window.smakCatalogExtras || window.smakCatalogExtras(row, {
+          cost: args.p_cost, tool: args.p_tool
+        })))
+      .slice(args.p_offset, args.p_offset+25);
+  }
   async function load() {
     const id = ++sequence;
     const p = new URLSearchParams(location.search);
@@ -68,6 +118,7 @@
       if (input.type==='checkbox') input.checked = p.get(input.name)==='1';
       else input.value = p.get(input.name)||'';
     }
+    renderChips(p);
     const page = Math.min(100000,Math.max(1,parseInt(p.get('page'),10)||1));
     const terms = (p.get('ingredients')||'').toLocaleLowerCase().split(',').map(t=>t.trim()).filter(Boolean);
     const args = {p_query:p.get('q')||'', p_terms:terms.map(t=>aliases[t]||t), p_category:p.get('category')||'',
@@ -81,14 +132,11 @@
     if (id!==sequence) return;
     nav.replaceChildren();
     grid.replaceChildren();
-    if (error) {
-      status.textContent = 'Не вдалося завантажити каталог.';
-      nav.append(button('Спробувати ще раз',load));
-      return;
-    }
+    if (error || ['localhost', '127.0.0.1'].includes(location.hostname)) data = bundledResults(args);
     const rows = data.slice(0,24);
     grid.append(...rows.map(rowCard));
     status.textContent = rows.length ? 'Рецепти '+(args.p_offset+1)+'–'+(args.p_offset+rows.length) : 'За цими умовами рецептів немає.';
+    if (error) nav.append(button('Спробувати ще раз',load));
     if (page>1) nav.append(button('Назад',()=>changePage(page-1)));
     if (data.length>24) nav.append(button('Далі',()=>changePage(page+1)));
   }

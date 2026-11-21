@@ -25,7 +25,7 @@ export default {
         const body = request.method === 'HEAD' ? null : (await html('/404')).replace(/(href|src)="(?=[a-zA-Z][^:"]*")/g,'$1="/');
         return new Response(body,{status:404,headers});
       }
-      let photo = '/images/hero.webp';
+      let photo = null;
       if (/^images\/recipes\/[a-z0-9-]+\.webp$/.test(row.image_path)) photo = '/'+row.image_path;
       if (row.image_path?.startsWith(project+'/storage/v1/object/public/recipe-photos/')) photo = row.image_path;
       const body = request.method === 'HEAD' ? null : renderRecipe(await html('/recipe'),row,url.origin,photo,row.recipe_categories?.label || row.category);

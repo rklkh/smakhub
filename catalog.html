@@ -11,35 +11,38 @@
   <link rel="icon" type="image/png" href="images/favicon.png">
   <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
+<body class="catalog-page">
   <a class="skip-link" href="#main">Перейти до вмісту</a>
 
   <header class="site-header">
-    <div class="container header-inner">
-      <a class="logo" href="index.html">
-        <img src="images/logo.webp" alt="" width="36" height="44">
+    <nav class="container header-inner" aria-label="Головна навігація">
+      <a class="logo" href="/index.html">
+        <img src="/images/logo.webp" alt="" width="36" height="44">
         <span>SmakHub</span>
       </a>
-      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Відкрити меню">&#9776;</button>
-      <nav id="site-nav" class="site-nav" aria-label="Головна навігація">
-        <ul>
-          <li><a href="index.html">Головна</a></li>
-          <li><a href="catalog.html" aria-current="page">Рецепти</a></li>
-          <li><a href="contacts.html">Контакти</a></li>
-          <li><a href="saved.html">Збережене</a></li>
-          <li><a href="account.html" data-account-link>Увійти</a></li>
-        </ul>
-      </nav>
-    </div>
+      <div class="primary-links">
+        <a href="/index.html">Головна</a>
+        <a href="/catalog.html" aria-current="page">Рецепти</a>
+      </div>
+      <a class="account-link" href="/account.html">
+        <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round">
+          <circle cx="12" cy="8" r="3.5"></circle>
+          <path d="M5 21v-1a7 7 0 0 1 14 0v1"></path>
+        </svg>
+        <span>Кабінет</span>
+      </a>
+    </nav>
   </header>
 
   <main id="main">
     <div class="container">
-      <h1>Каталог рецептів</h1>
+      <div class="catalog-intro">
+        <h1>Каталог рецептів</h1>
       <p class="lead">Шукайте за назвою чи продуктами та уточнюйте результат фільтрами.</p>
+      </div>
 
       <form class="form filters" action="catalog.html" method="get" role="search">
-        <div class="filters-grid">
+        <div class="search-fields">
           <div class="form-group">
             <label for="f-q">Назва страви</label>
             <input type="search" id="f-q" name="q" placeholder="Наприклад, сирники">
@@ -47,8 +50,10 @@
           <div class="form-group">
             <label for="f-ingredients">Інгредієнти</label>
             <input type="text" id="f-ingredients" name="ingredients" placeholder="яйця, борошно, молоко" aria-describedby="ingredient-help">
-            <p class="form-hint" id="ingredient-help">Усі перелічені через кому продукти мають входити до рецепта. Інші інгредієнти також можуть знадобитися.</p>
+            <p class="form-hint" id="ingredient-help">Введіть продукти через кому. Рецепт має містити кожен із них.</p>
           </div>
+        </div>
+        <div class="quick-fields">
           <div class="form-group">
             <label for="f-category">Категорія</label>
             <select id="f-category" name="category">
@@ -69,29 +74,35 @@
               <option value="61">Понад 1 годину</option>
             </select>
           </div>
-          <div class="form-group">
-            <label for="f-difficulty">Складність</label>
-            <select id="f-difficulty" name="difficulty">
-              <option value="">Будь-яка</option>
-              <option value="easy">Легко</option>
-              <option value="medium">Середньо</option>
-              <option value="hard">Складно</option>
-            </select>
-          </div>
-          <div class="form-group form-check">
-            <input type="checkbox" id="f-veg" name="vegetarian" value="1">
-            <label for="f-veg">Лише вегетаріанські</label>
-          </div>
         </div>
+        <details class="more-filters">
+          <summary><span>Додаткові фільтри</span><span class="filter-count" hidden></span></summary>
+          <div class="filters-grid">
+            <div class="form-group">
+              <label for="f-difficulty">Складність</label>
+              <select id="f-difficulty" name="difficulty">
+                <option value="">Будь-яка</option>
+                <option value="easy">Легко</option>
+                <option value="medium">Середньо</option>
+                <option value="hard">Складно</option>
+              </select>
+            </div>
+            <div class="form-group form-check">
+              <input type="checkbox" id="f-veg" name="vegetarian" value="1">
+              <label for="f-veg">Лише вегетаріанські</label>
+            </div>
+          </div>
+        </details>
         <div class="form-actions">
-          <button class="btn btn-secondary" type="submit">Застосувати</button>
-          <button class="btn btn-outline" type="reset">Скинути</button>
+          <button class="btn" type="submit">Знайти рецепти</button>
+          <button class="reset-filters" type="reset">Скинути фільтри</button>
         </div>
       </form>
 
       <section class="section" aria-labelledby="results-title">
-        <h2 id="results-title">Усі рецепти</h2>
-        <p>Показано рецептів: 8</p>
+        <h2 id="results-title" tabindex="-1">Усі рецепти</h2>
+        <p>Завантаження…</p>
+        <ul class="active-filters" aria-label="Активні фільтри" hidden></ul>
         <ul class="card-grid">
           <li>
             <article class="recipe-card">
@@ -213,7 +224,7 @@
   <footer class="site-footer">
     <div class="container footer-inner">
       <p>&copy; 2026 SmakHub. Навчальний проєкт, КПІ ім. Ігоря Сікорського.</p>
-      <nav aria-label="Додаткові посилання"><ul><li><a href="about.html">Про проєкт</a></li><li><a href="kitchen.html">Кухонні інструменти</a></li></ul></nav>
+      <nav aria-label="Додаткові посилання"><ul><li><a href="/about.html">Про проєкт</a></li><li><a href="/contacts.html">Контакти</a></li><li><a href="kitchen.html">Кухонні інструменти</a></li></ul></nav>
     </div>
   </footer>
 
@@ -222,6 +233,7 @@
   <script src="js/vendor/supabase.js" defer></script>
   <script src="js/client.js" defer></script>
   <script src="js/recipes.js" defer></script>
+  <script src="js/recipe-book.js" defer></script>
   <script src="js/backend.js" defer></script>
   <script src="js/kitchen.js" defer></script>
   <script src="js/catalog.js" defer></script>

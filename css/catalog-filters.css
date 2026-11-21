@@ -1,0 +1,102 @@
+.catalog-page .catalog-intro {
+  padding: clamp(1rem, 3vw, 2rem) 0;
+  border: 0;
+  background: none;
+}
+
+.catalog-page .filters {
+  width: 100%;
+  max-width: none;
+  margin-block: 0 1.25rem;
+  padding: clamp(1rem, 3vw, 1.75rem);
+  border-radius: 1rem;
+  background: var(--color-white);
+}
+
+.search-fields, .quick-fields, .more-filters .filters-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: start;
+  gap: 0.75rem 1rem;
+}
+
+.quick-fields { margin-top: 0.5rem; }
+.search-fields .form-group, .quick-fields .form-group, .more-filters .form-group { margin: 0; }
+.catalog-page .filters :is(input[type="search"], input[type="text"], select) {
+  min-height: 2.85rem;
+  width: 100%;
+  background: #f8f8fc;
+  border-color: var(--color-field-border);
+}
+
+.more-filters {
+  margin-block: 1rem;
+  border-block: 1px solid var(--color-border);
+}
+
+.more-filters summary {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 2.75rem;
+  color: var(--color-primary-dark);
+  font-weight: 700;
+  cursor: pointer;
+  list-style: none;
+}
+
+.more-filters summary::-webkit-details-marker { display: none; }
+.more-filters summary::after {
+  content: "";
+  margin-left: auto;
+  width: 0.55rem;
+  height: 0.55rem;
+  border: solid currentColor;
+  border-width: 0 2px 2px 0;
+  transform: translateY(-0.15rem) rotate(45deg);
+}
+.more-filters[open] summary::after { transform: translateY(0.15rem) rotate(225deg); }
+.more-filters .filters-grid { padding: 0.35rem 0 1rem; }
+
+.filter-count {
+  min-width: 1.55em;
+  text-align: center;
+  border-radius: 99px;
+  background: var(--color-secondary);
+}
+
+.reset-filters {
+  padding: 0.6rem;
+  border: 0;
+  background: none;
+  color: var(--color-primary-dark);
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+.reset-filters:hover { text-decoration: underline; }
+
+.active-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding: 0;
+  list-style: none;
+}
+.active-filters button {
+  max-width: 100%;
+  overflow-wrap: anywhere;
+  padding: 0.3rem 0.85rem;
+  border: 1px solid #b4bde6;
+  border-radius: 99px;
+  background: var(--color-secondary);
+  color: var(--color-primary-dark);
+  font: inherit;
+  cursor: pointer;
+}
+.active-filters button:hover { background: #d9e0fb; }
+.active-filters button span { margin-left: 0.5rem; }
+
+@media (max-width: 560px) {
+  .search-fields, .quick-fields, .more-filters .filters-grid { grid-template-columns: minmax(0, 1fr); }
+}

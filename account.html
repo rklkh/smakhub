@@ -15,28 +15,29 @@
   <a class="skip-link" href="#main">Перейти до вмісту</a>
 
   <header class="site-header">
-    <div class="container header-inner">
-      <a class="logo" href="index.html">
-        <img src="images/logo.webp" alt="" width="36" height="44">
+    <nav class="container header-inner" aria-label="Головна навігація">
+      <a class="logo" href="/index.html">
+        <img src="/images/logo.webp" alt="" width="36" height="44">
         <span>SmakHub</span>
       </a>
-      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Відкрити меню">&#9776;</button>
-      <nav id="site-nav" class="site-nav" aria-label="Головна навігація">
-        <ul>
-          <li><a href="index.html">Головна</a></li>
-          <li><a href="catalog.html">Рецепти</a></li>
-          <li><a href="contacts.html">Контакти</a></li>
-          <li><a href="saved.html">Збережене</a></li>
-          <li><a href="account.html" aria-current="page" data-account-link>Увійти</a></li>
-        </ul>
-      </nav>
-    </div>
+      <div class="primary-links">
+        <a href="/index.html">Головна</a>
+        <a href="/catalog.html">Рецепти</a>
+      </div>
+      <a class="account-link" href="/account.html" aria-current="page">
+        <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round">
+          <circle cx="12" cy="8" r="3.5"></circle>
+          <path d="M5 21v-1a7 7 0 0 1 14 0v1"></path>
+        </svg>
+        <span>Кабінет</span>
+      </a>
+    </nav>
   </header>
 
   <main id="main">
     <div class="container">
 
-      <h1>Акаунт</h1>
+      <h1>Кабінет</h1>
       <p id="account-status" role="status">Перевіряємо вхід…</p>
       <div id="account-guest" class="auth-panel" hidden>
         <nav class="auth-switch" aria-label="Дії з акаунтом">
@@ -87,15 +88,29 @@
           <button class="btn" type="submit">Створити акаунт</button>
         </form>
       </div>
-      <section id="account-member" class="auth-panel" hidden>
+      <section id="account-member" class="dashboard" hidden>
         <h2 id="account-greeting">Мій профіль</h2>
         <p id="account-email"></p>
         <div class="auth-switch">
           <a class="btn btn-outline" href="admin.html" id="admin-link" hidden>Модерація</a>
           <a class="btn" href="author.html">Мої рецепти</a>
-          <a class="btn" href="saved.html">Збережені рецепти</a>
           <button class="btn btn-outline" type="button" id="logout">Вийти</button>
         </div>
+        <section class="dashboard-panel" aria-labelledby="stats-title">
+          <h2 id="stats-title">Статистика</h2>
+          <p id="dashboard-stats-status" role="status"></p>
+          <dl class="dashboard-stats">
+            <div><dt>Переглянуто</dt><dd id="view-count">—</dd></div>
+            <div><dt>Збережено</dt><dd id="saved-count">—</dd></div>
+            <div><dt>Оцінено</dt><dd id="rating-count">—</dd></div>
+            <div><dt>Середня моя оцінка</dt><dd id="rating-mean">—</dd></div>
+          </dl>
+        </section>
+        <section class="dashboard-panel" aria-labelledby="saved-title">
+          <h2 id="saved-title">Збережені рецепти</h2>
+          <p id="saved-status" role="status"></p>
+          <ul id="saved-recipes" class="card-grid"></ul>
+        </section>
       </section>
     </div>
   </main>
@@ -103,7 +118,7 @@
   <footer class="site-footer">
     <div class="container footer-inner">
       <p>&copy; 2026 SmakHub. Навчальний проєкт, КПІ ім. Ігоря Сікорського.</p>
-      <nav aria-label="Додаткові посилання"><ul><li><a href="about.html">Про проєкт</a></li><li><a href="kitchen.html">Кухонні інструменти</a></li></ul></nav>
+      <nav aria-label="Додаткові посилання"><ul><li><a href="/about.html">Про проєкт</a></li><li><a href="/contacts.html">Контакти</a></li><li><a href="kitchen.html">Кухонні інструменти</a></li></ul></nav>
     </div>
   </footer>
 
