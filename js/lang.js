@@ -2,6 +2,22 @@
 (function () {
   "use strict";
   const messages = {
+    "Заповніть усі рядки інгредієнтів і кроків.": "Complete every ingredient and step row.",
+    "Відхилити рецепт": "Reject recipe",
+    "Темна тема": "Dark theme",
+    "Новий інгредієнт": "Add ingredient",
+    "Новий крок": "Add step",
+    "Назва продукту": "Ingredient name",
+    "Кількість": "Amount",
+    "Опис кроку": "Step description",
+    "Прибрати рядок": "Remove row",
+    "Основне": "Basics",
+    "Керування сайтом": "Site management",
+    "Черга рецептів": "Recipe queue",
+    "Причина відхилення": "Reason for rejection",
+    "Підтвердити відхилення": "Confirm rejection",
+    "Скасувати": "Cancel",
+    "Фото та публікація": "Photo and submission",
     "Видалити фільтр": "Remove filter",
     "Додаткові фільтри": "More filters",
     "Скинути фільтри": "Reset filters",
@@ -607,12 +623,9 @@
   }
 
   function mount() {
-    const wrapper = document.querySelector('footer .footer-inner') || document.querySelector('footer');
-    const switcher = document.createElement('button');
-    switcher.type = 'button';
-    switcher.className = 'btn btn-outline language-switch';
-    switcher.setAttribute('translate', 'no');
-    wrapper?.append(switcher);
+    const switcher = document.querySelector('.language-switch');
+    if (!switcher) return;
+    switcher.hidden = false;
     const observer = new MutationObserver(records => {
       observer.disconnect();
       for (const record of records) {
@@ -631,7 +644,7 @@
     function applyLanguage() {
       observer.disconnect();
       document.documentElement.lang = language;
-      switcher.textContent = language === 'uk' ? 'English' : 'Українська';
+      switcher.textContent = language === 'uk' ? 'EN' : 'UA';
       switcher.lang = language === 'uk' ? 'en' : 'uk';
       switcher.setAttribute('aria-label', language === 'uk' ? 'Switch to English' : 'Перемкнути на українську');
       render(document.documentElement);

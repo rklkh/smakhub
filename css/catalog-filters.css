@@ -25,7 +25,7 @@
 .catalog-page .filters :is(input[type="search"], input[type="text"], select) {
   min-height: 2.85rem;
   width: 100%;
-  background: #f8f8fc;
+  background: var(--field-surface);
   border-color: var(--color-field-border);
 }
 
@@ -87,14 +87,14 @@
   max-width: 100%;
   overflow-wrap: anywhere;
   padding: 0.3rem 0.85rem;
-  border: 1px solid #b4bde6;
+  border: 1px solid var(--color-field-border);
   border-radius: 99px;
   background: var(--color-secondary);
-  color: var(--color-primary-dark);
+  color: var(--color-text);
   font: inherit;
   cursor: pointer;
 }
-.active-filters button:hover { background: #d9e0fb; }
+.active-filters button:hover { background: var(--chrome-hover); }
 .active-filters button span { margin-left: 0.5rem; }
 
 @media (max-width: 560px) {

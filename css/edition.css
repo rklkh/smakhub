@@ -1,17 +1,8 @@
 :root {
-  --color-primary: #3550bf;
-  --color-primary-dark: #21388e;
-  --color-secondary: #e8ebfb;
-  --color-bg: #f8f6f1;
-  --color-text: #202238;
-  --color-text-muted: #50536a;
-  --color-border: #d9d9e3;
-  --color-field-border: #72758b;
-  --color-accent: #e9a842;
   --font-heading: "Playfair Display", Georgia, serif;
   --radius: 0.55rem;
   --container-width: 74rem;
-  --shadow: 0 2px 8px #171d500c;
+  --shadow: 0 2px 8px #2e2a260d;
 }
 
 .site-header { background: var(--color-bg); }
@@ -28,7 +19,8 @@
 }
 
 .site-header .logo img {
-  width: clamp(1.35rem, 3.5vw, 2.25rem);
+  width: clamp(1.65rem, 4.2vw, 3rem);
+  height: auto;
 }
 
 .primary-links, .account-link {
@@ -51,10 +43,10 @@
 .account-link:hover, .account-link[aria-current] { border-color: var(--color-primary-dark); }
 
 .home-page, .catalog-page {
-  --discover-sage: #e8ebfb;
-  --discover-ink: #202238;
-  --discover-warm: #f6e7cf;
-  --discover-border: #d9d9e3;
+  --discover-sage: var(--panel-subtle);
+  --discover-ink: var(--color-text);
+  --discover-warm: var(--feature-panel);
+  --discover-border: var(--color-border);
 }
 
 .home-intro {
@@ -76,11 +68,11 @@
 .home-categories img { border-radius: 50%; }
 .home-contribute, .catalog-intro { border-radius: var(--radius); }
 .catalog-intro { border-inline-start: 0.35rem solid var(--color-primary); }
-.catalog-page .recipe-card { border-top: 0.2rem solid #bdc7eb; }
+.catalog-page .recipe-card { border-top: 0.2rem solid var(--decorative-line); }
 .recipe-card-body { overflow-wrap: anywhere; }
 .recipe-card-cat { color: var(--color-primary-dark); }
 .recipe-body { gap: clamp(1rem, 4vw, 3rem); }
-.recipe-ingredients, .recipe-steps { border-top: 0.2rem solid #bdc7eb; }
+.recipe-ingredients, .recipe-steps { border-top: 0.2rem solid var(--decorative-line); }
 
 .dashboard { max-width: none; }
 .dashboard-panel, #community-account > section {
@@ -96,14 +88,10 @@
   gap: 0.75rem;
   margin: 0;
 }
-.dashboard-stats > div { padding: 0.85rem; border-radius: var(--radius); background: #eeeff9; }
+.dashboard-stats > div { padding: 0.85rem; border-radius: var(--radius); background: var(--panel-subtle); }
 .dashboard-stats dt { color: var(--color-text-muted); }
 .dashboard-stats dd { margin: 0.25rem 0 0; color: var(--color-primary-dark); font-size: 1.65rem; font-weight: 700; }
 #community-account { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
-
-.site-footer { background: #202238; }
-.site-footer .language-switch { color: var(--color-white); border-color: #b5bad4; }
-.site-footer .language-switch:hover { color: var(--color-text); }
 
 @media (max-width: 720px) {
   .home-intro, #community-account { grid-template-columns: minmax(0, 1fr); }

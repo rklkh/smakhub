@@ -9,6 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,wght@0,400;0,700;1,700&amp;family=Playfair+Display:wght@600;700&amp;display=swap" rel="stylesheet">
   <link rel="icon" type="image/png" href="images/favicon.png">
+  <script src="/js/theme.js"></script>
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -17,13 +18,18 @@
   <header class="site-header">
     <nav class="container header-inner" aria-label="Головна навігація">
       <a class="logo" href="/index.html">
-        <img src="/images/logo.webp" alt="" width="36" height="44">
+        <img src="/images/logo-transparent.png" alt="" width="236" height="300">
         <span>SmakHub</span>
       </a>
       <div class="primary-links">
         <a href="/index.html">Головна</a>
         <a href="/catalog.html">Рецепти</a>
       </div>
+      <div class="header-tools">
+        <button class="tool-link theme-switch" type="button" aria-label="Темна тема" aria-pressed="false" hidden><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5"/></svg></button>
+        <button class="tool-link language-switch" type="button" translate="no" hidden></button>
+        <a class="tool-link" href="/saved.html" aria-label="Збережені рецепти" title="Збережені рецепти"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 4h12v16l-6-4-6 4z"/></svg></a>
+        <a class="header-create" href="/author.html?new=1"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg><span>Додати рецепт</span></a>
       <a class="account-link" href="/account.html" aria-current="page">
         <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round">
           <circle cx="12" cy="8" r="3.5"></circle>
@@ -31,6 +37,7 @@
         </svg>
         <span>Кабінет</span>
       </a>
+      </div>
     </nav>
   </header>
 

@@ -1,12 +1,4 @@
 /* The discovery pages use the sage and terracotta palette of prototype 11. */
-.home-page,
-.catalog-page {
-  --discover-sage: #e8eee1;
-  --discover-ink: #263c30;
-  --discover-warm: #f4e3d7;
-  --discover-border: #dedfd3;
-}
-
 .home-intro {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
@@ -116,7 +108,7 @@
 .home-page .recipe-card,
 .catalog-page .recipe-card { border: 1px solid var(--discover-border); box-shadow: none; }
 .home-page .recipe-card:hover,
-.catalog-page .recipe-card:hover { border-color: #9ca696; }
+.catalog-page .recipe-card:hover { border-color: var(--color-primary-dark); }
 
 @media (max-width: 940px) {
   .home-categories { grid-template-columns: repeat(3, minmax(0, 1fr)); }

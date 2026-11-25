@@ -101,21 +101,97 @@
     controls.append(link('Переглянути й редагувати','author.html?edit=' + encodeURIComponent(recipe.id)));
     if (moderate && recipe.status === 'pending') {
       controls.append(button('Схвалити', async () => {
-        await action(recipe,'published'); status.textContent = 'Рецепт опубліковано.'; await load();
+        await action(recipe,'published'); $('#queue-status').textContent = 'Рецепт опубліковано.'; await load();
       }),button('Відхилити', async () => {
-        const note = prompt('Причина відхилення (до 500 символів)');
+        const note = await rejectionReason();
         if (note === null) return;
         if (!note.trim() || note.trim().length > 500) throw invalid('Вкажіть причину відхилення до 500 символів.');
-        await action(recipe,'rejected',note); status.textContent = 'Рецепт повернуто автору.'; await load();
+        await action(recipe,'rejected',note); $('#queue-status').textContent = 'Рецепт повернуто автору.'; await load();
       }));
     }
     controls.append(button('Видалити рецепт', async () => {
       if (!confirm('Видалити рецепт «' + recipe.title + '»?')) return;
       await action(recipe,'delete'); status.textContent = 'Рецепт видалено.'; await load();
     }));
-    item.append(heading, node('p',stateLabels[recipe.status]),controls);
+    const badge = node('span',stateLabels[recipe.status]);
+    badge.className = 'recipe-state';
+    badge.dataset.state = recipe.status;
+    item.append(heading,badge,controls);
     if (recipe.moderation_note) item.append(node('p',recipe.moderation_note));
   }
+  function rejectionReason() {
+    const dialog = $('#reject-dialog');
+    const field = $('#reject-note');
+    field.value = '';
+    dialog.returnValue = '';
+    return new Promise(resolve => {
+      dialog.addEventListener('close', () => {
+        resolve(dialog.returnValue === 'reject' ? field.value.trim() : null);
+      }, {once:true});
+      dialog.showModal();
+      field.focus();
+    });
+  }
+
+  function repeatableRows(root, add, descriptions) {
+    let nextId = 0;
+
+    function addRow(values = [], focus = false) {
+      const row = node(root.tagName === 'OL' ? 'li' : 'div');
+      row.className = 'editor-row';
+      for (const [index, description] of descriptions.entries()) {
+        const wrapper = node('div');
+        const label = node('label', description.label);
+        const field = node(description.tag);
+        field.id = root.id + '-' + nextId++;
+        label.htmlFor = field.id;
+        field.maxLength = description.limit;
+        field.value = values[index] ?? '';
+        field.required = true;
+        if (description.tag === 'textarea') field.rows = 2;
+        field.addEventListener('input', () => field.setCustomValidity(''));
+        wrapper.append(label, field);
+        row.append(wrapper);
+      }
+      const remove = node('button', '×');
+      remove.type = 'button';
+      remove.className = 'remove-row';
+      remove.setAttribute('aria-label','Прибрати рядок');
+      remove.addEventListener('click', () => {
+        const target = row.nextElementSibling || row.previousElementSibling;
+        if (!target) return;
+        row.remove();
+        updateControls();
+        target.querySelector('input,textarea').focus();
+      });
+      row.append(remove);
+      root.append(row);
+      updateControls();
+      if (focus) row.querySelector('input,textarea').focus();
+    }
+
+    function updateControls() {
+      add.disabled = root.children.length >= 80;
+      root.querySelectorAll('.remove-row').forEach(button => { button.disabled = root.children.length < 2; });
+    }
+
+    add.addEventListener('click', () => addRow([], true));
+    return {
+      fill(rows) {
+        root.replaceChildren();
+        (rows.length ? rows : [[]]).forEach(row => addRow(row));
+      },
+      read() {
+        return Array.from(root.children, row => Array.from(row.querySelectorAll('input,textarea'), field => {
+          const value = field.value.trim();
+          if (!value) throw invalid('Заповніть усі рядки інгредієнтів і кроків.');
+          return value;
+        }));
+      },
+      updateControls
+    };
+  }
+
   async function initAuthor() {
     $('#author-tools').hidden = false;
     $('#staff-link').hidden = !admin;
@@ -123,6 +199,13 @@
     const panel = $('#edit-panel');
     const feedback = $('#form-status');
     const fields = form.elements;
+    const ingredientsInput = repeatableRows($('#ingredient-rows'), $('#add-ingredient'), [
+      {label:'Назва продукту',tag:'input',limit:150},
+      {label:'Кількість',tag:'input',limit:100}
+    ]);
+    const stepsInput = repeatableRows($('#step-rows'), $('#add-step'), [
+      {label:'Опис кроку',tag:'textarea',limit:2000}
+    ]);
     const categories = checked(await api.from('recipe_categories').select('slug,label').order('label'));
     fields.category.replaceChildren(...categories.map(category => new Option(category.label,category.slug)));
     let current = null;
@@ -141,8 +224,8 @@
         control.checked = Boolean(row?.cookware?.includes(control.value));
       }
       fields.vegetarian.checked = Boolean(row?.vegetarian);
-      fields.ingredients.value = row ? row.ingredients.map(parts => parts.join(' | ')).join('\n') : '';
-      fields.steps.value = row ? row.steps.join('\n') : '';
+      ingredientsInput.fill(row?.ingredients ?? []);
+      stepsInput.fill((row?.steps ?? []).map(step => [step]));
       const image = $('#current-photo');
       const src = photoURL(row?.image_path);
       image.hidden = !src;
@@ -180,13 +263,8 @@
         const data = new FormData(form);
         const target = event.submitter?.value || 'pending';
         const state = target === 'moderator' ? current.status : target;
-        const ingredients = data.get('ingredients').split(/\r?\n/).map(line => line.trim()).filter(Boolean).map(line => {
-          const parts = line.split('|').map(part => part.trim());
-          if (parts.length !== 2 || !parts[0] || !parts[1]) throw invalid('Для кожного продукту вкажіть назву | кількість.');
-          return parts;
-        });
-        const steps = data.get('steps').split(/\r?\n/).map(line => line.trim()).filter(Boolean);
-        if (!ingredients.length || !steps.length || steps.length > 80 || ingredients.length > 80) throw invalid('Додайте від 1 до 80 інгредієнтів і кроків.');
+        const ingredients = ingredientsInput.read();
+        const steps = stepsInput.read().map(([step]) => step);
         feedback.textContent = 'Зберігаємо…';
         const photo = await getPhoto(fields.photo.files[0]);
         if (!photo && state !== 'draft') throw invalid('Додайте фото готової страви.');
@@ -206,16 +284,19 @@
       } finally {
         busy = false;
         controls.forEach(control => { control.disabled = false; });
+        ingredientsInput.updateControls();
+        stepsInput.updateControls();
       }
     });
 
-    await refresh();
-    const editId = new URLSearchParams(location.search).get('edit');
+    const params = new URLSearchParams(location.search);
+    const editId = params.get('edit');
     if (editId) {
       const row = checked(await api.from('recipes').select('*').eq('id',editId).single());
       if (!admin && row.author_id !== user.id) throw invalid('Цей рецепт належить іншому автору.');
       edit(row);
-    }
+    } else if (params.has('new')) edit(null);
+    await refresh();
   }
 
   async function initAdmin() {
@@ -345,7 +426,33 @@
       if (offset) root.append(button('Попередні',async () => { offset -= pageSize; await loadMembers(); }));
       if (members.length > pageSize) root.append(button('Наступні',async () => { offset += pageSize; await loadMembers(); }));
     }
-    await Promise.all([loadRecipes(),loadComments(),loadCategories(),loadCollections(),loadMembers()]);
+    const pages = {
+      'recipe-queue': loadRecipes, comments: loadComments,
+      categories: loadCategories, collections: loadCollections, users: loadMembers
+    };
+    const links = [...document.querySelectorAll('.admin-nav a')];
+    const loaded = new Set();
+
+    function showSection() {
+      const fragment = location.hash.slice(1);
+      const key = Object.hasOwn(pages, fragment) ? fragment : 'recipe-queue';
+      for (const link of links) {
+        const id = link.hash.slice(1);
+        $('#' + id).hidden = id !== key;
+        if (id === key) link.setAttribute('aria-current','location');
+        else link.removeAttribute('aria-current');
+      }
+      if (!loaded.has(key)) {
+        loaded.add(key);
+        pages[key]().catch(error => {
+          loaded.delete(key);
+          status.textContent = explain(error);
+        });
+      }
+    }
+
+    window.addEventListener('hashchange',showSection);
+    showSection();
   }
 
   try {
