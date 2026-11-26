@@ -1,19 +1,14 @@
-/* ==========================================================
-   SmakHub — спільні стилі
-   Кольори та шрифти взяті з брендбуку (Лабораторна 1, розділ 4)
-   ========================================================== */
-
 :root {
-  --color-primary: #E85A4F;      /* теракотовий — фірмовий (логотип, декор) */
-  --color-primary-dark: #B3382C; /* темніший відтінок для тексту/кнопок: контраст ≥ 5.5:1 (WCAG AA) */
-  --color-secondary: #6FAE8C;    /* м'ятний — другорядні дії, фільтри (темний текст, контраст 5.5:1) */
-  --color-bg: #FAF7F2;           /* майже білий фон */
-  --color-text: #2E2A26;         /* темно-сірий текст */
-  --color-text-muted: #6B645C;   /* другорядний текст, плейсхолдери (контраст 5.4:1) */
-  --color-accent: #F2B138;       /* оцінки, бейджі (з темним текстом) */
+  --color-primary: #E85A4F;
+  --color-primary-dark: #B3382C;
+  --color-secondary: #6FAE8C;
+  --color-bg: #FAF7F2;
+  --color-text: #2E2A26;
+  --color-text-muted: #6B645C;
+  --color-accent: #F2B138;
   --color-white: #FFFFFF;
-  --color-border: #E8E1D6;       /* декоративні межі карток */
-  --color-field-border: #857C72; /* межі полів форм (контраст ≥ 3:1) */
+  --color-border: #E8E1D6;
+  --color-field-border: #857C72;
 
   --font-heading: "Playfair Display", Georgia, serif;
   --font-body: "Nunito Sans", Inter, Arial, sans-serif;
@@ -23,7 +18,6 @@
   --container-width: 1100px;
 }
 
-/* ---------- Базові стилі ---------- */
 *,
 *::before,
 *::after {
@@ -68,7 +62,7 @@ img {
   max-width: 100%;
   height: auto;
   display: block;
-  background: var(--color-border); /* рамка залишається видимою, поки фото не додано/не завантажилось */
+  background: var(--color-border);
 }
 
 a {
@@ -96,7 +90,6 @@ a:hover {
   max-width: 65ch;
 }
 
-/* Текст лише для скрінрідерів */
 .visually-hidden {
   position: absolute;
   width: 1px;
@@ -109,7 +102,6 @@ a:hover {
   border: 0;
 }
 
-/* Посилання «Перейти до вмісту» для клавіатурної навігації */
 .skip-link {
   position: absolute;
   left: -9999px;
@@ -125,7 +117,6 @@ a:hover {
 }
 
 
-/* Tables share the type, spacing and palette of recipe cards. */
 table { border-collapse: collapse; width: 100%; }
 caption { text-align: start; font-weight: 700; margin-block-end: .5rem; }
 th, td { padding: .65rem .8rem; border-block-end: 1px solid var(--color-border); text-align: start; vertical-align: top; overflow-wrap: anywhere; }

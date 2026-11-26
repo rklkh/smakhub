@@ -1,4 +1,3 @@
-// Пакуємо тільки публічні файли. SQL, документація, тести, .git і секрети не публікуються.
 const fs=require('node:fs');
 const path=require('node:path');
 const root=path.resolve(__dirname,'..');

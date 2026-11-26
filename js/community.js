@@ -1,4 +1,3 @@
-/* Profile, private activity and published recipe discussions. */
 (() => {
   'use strict';
   const find = selector => document.querySelector(selector);

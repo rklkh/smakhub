@@ -1,4 +1,3 @@
--- SmakHub 0.5, after 003a_editor.sql. Preserve existing profiles, favorites and recipes.
 begin;
 alter table public.profiles
   add column if not exists cuisines text not null default '' check (length(cuisines) <= 300),

@@ -1,4 +1,3 @@
--- Доповнення редакційних рецептів після 003a. Зберігаємо задані адміністратором значення.
 begin;
 update public.recipes as r
 set cost_band = coalesce(r.cost_band, defaults.band),

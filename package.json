@@ -1,6 +1,5 @@
 {
-  "name": "smakhub300",
-  "version": "3.0.0",
+  "name": "smakhub",
   "private": true,
   "scripts": {
     "build": "node scripts/build.cjs"

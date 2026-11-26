@@ -151,7 +151,7 @@
         && meal.ingredients.every(pair => Array.isArray(pair) && pair.length === 2 && pair.every(v=>typeof v==='string'))
       );
       if (Array.isArray(saved?.bought)) bought = new Map(saved.bought);
-    } catch { /* The plan can be used in memory when storage is unavailable. */ }
+    } catch {}
   }
   function write() {
     try {

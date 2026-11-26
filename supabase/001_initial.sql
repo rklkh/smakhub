@@ -1,5 +1,3 @@
--- Початкова схема для НОВОГО проєкту Supabase. Виконати один раз у SQL Editor.
--- Це підготовка, а не свідчення, що віддалену БД вже створено.
 begin;
 create table public.profiles (
   id uuid primary key references auth.users(id) on delete cascade,
@@ -49,8 +47,6 @@ revoke all on public.recipes from anon, authenticated;
 grant select on public.recipes to anon, authenticated;
 create policy recipes_published_read on public.recipes for select to anon, authenticated using (status = 'published');
 create policy recipes_owner_read on public.recipes for select to authenticated using ((select auth.uid()) = author_id);
--- Поки без клієнтського INSERT/UPDATE: права автора й модератора додаються разом
--- з перевіреним workflow. Користувач не може сам встановити status=published.
 
 create table public.favorites (
   user_id uuid not null references auth.users(id) on delete cascade,
@@ -78,6 +74,4 @@ create table public.contact_messages (
 );
 alter table public.contact_messages enable row level security;
 revoke all on public.contact_messages from anon, authenticated;
--- Звернення прийматиме Edge Function із валідацією та захистом від спаму.
--- Не відкриваємо персональні дані або анонімні записи через публічну таблицю.
 commit;

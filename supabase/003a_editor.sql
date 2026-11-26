@@ -1,4 +1,3 @@
--- Run after 002_smakhub_04.sql. Existing accounts keep the same identifiers.
 begin;
 
 create table if not exists public.smak_members (

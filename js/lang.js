@@ -1,4 +1,3 @@
-// Ukrainian source strings remain available for switching back without reloading.
 (function () {
   "use strict";
   const messages = {

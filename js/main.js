@@ -1,6 +1,4 @@
-// SmakHub — спільний скрипт
 (function () {
-  // 1. Відкриття/закриття мобільного меню
   var toggle = document.querySelector(".nav-toggle");
   var nav = document.getElementById("site-nav");
 
@@ -12,7 +10,6 @@
     });
   }
 
-  // 2. Реєстрація: перевірка збігу паролів
   var password = document.getElementById("password");
   var confirm = document.getElementById("password-confirm");
 
